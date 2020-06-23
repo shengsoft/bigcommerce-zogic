@@ -1,0 +1,17 @@
+{{#partial "page"}}
+{{> components/common/breadcrumbs breadcrumbs=breadcrumbs}}
+<div class="container">
+	<h2 class="page-heading">{{lang 'account.returns.heading' }}</h2>
+	<div class="wrap-account">
+	   {{> components/account/navigation account_page='returns'}}
+	   <div class="account">
+	       <div class="account-row">
+	           <p>
+	               {{lang 'account.returns.successful'}}
+	           </p>
+	       </div>
+	   </div>
+   </div>
+</div>
+{{/partial}}
+{{> layout/base}}

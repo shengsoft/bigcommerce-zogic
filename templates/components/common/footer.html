@@ -1,0 +1,187 @@
+{{#if theme_settings.bigcommerce_banners }}
+    {{#if settings.data_tag_enabled}}
+        <div class="banners" data-banner-location="bottom">
+            {{#each (limit banners.bottom_metadata 1)}}
+                <div class="banner container" data-event-type="promotion" data-entity-id="{{this.id}}" data-name="{{this.banner-name}}" data-position="{{this.location}}" data-name="{{this.banner-name}}">
+                    <div data-event-type="promotion-click">
+                        {{{this.content}}}
+                    </div>
+                </div>
+            {{/each}}
+        </div>
+        {{else}}
+        <div class="banners" data-banner-location="bottom">
+            <div class="banner container">
+                {{{limit banners.bottom 1}}}
+            </div>
+        </div>
+    {{/if}}
+{{/if}}
+
+<div class="newsletter-subscription">
+    <div class="container">
+        {{#if settings.show_newsletter_box}}
+            {{> components/common/subscription-form}}
+        {{/if}}
+    </div>
+</div>
+
+{{#if page_type '!=' 'default' }}
+
+<!-- BEGIN Value Props Block -->
+<div id="ValueProps" class="mobilehide">
+        <div style="text-align: center; margin: 20px 0px 0px 0px;">
+            <div style="display: inline-block; margin: 0px;"><img  style="display: inline-block; margin: 5px;" src="/product_images/uploaded_images/valueprop-123-192.png" width="480" height="160" border="0" alt=""></div>
+            <div style="display: inline-block; margin: 0px;"><img  style="display: inline-block; margin: 5px;" src="/product_images/uploaded_images/valueprop-45-193.png" width="339" height="160" border="0" alt=""></div>
+            <div style="display: inline-block; margin: 0px;"><img  style="display: inline-block; margin: 5px;" src="/product_images/uploaded_images/valueprop-67-192.png" width="331" height="160" border="0" alt=""></div>
+        </div>
+</div>
+<!-- END Value Props Block -->
+{{/if}}
+
+<footer id="footer-wrapper">
+    <section id="main-footer" style="background: #ddd; border-top: 5px solid #00b9e4;">
+        <div class="container">
+            <!-- Begin Footer Columns -->
+            <div class="footer-columns row">
+                <div class="column-item col-sm-3">
+                    <h5 style="color: #38383e;">Shop</h5>
+                    <ul>
+                        {{#each categories}}
+                        <li>
+                            <a href="{{url}}">{{name}}</a>
+                        </li>
+                        {{/each}}
+                    </ul>
+                </div>
+                <div class="column-item col-sm-3">
+                    <h5 style="color: #38383e;">Our Company</h5>
+                    <ul>
+                        <li><a href="/welcome-to-zogics/">Welcome to Zogics</a></li>
+                        <li><a href="/meet-the-team/">Meet the Team</a></li>
+                        <li><a href="/the-dogs-of-zogics/">The Dogs of Zogics</a></li>
+                        <li><a href="/careers/">Careers</a></li>
+                        <li><a href="/in-the-press/">In the Press</a></li>
+                    </ul>
+                </div>
+                <div class="column-item col-sm-3">
+                    <h5 style="color: #38383e;">Ordering</h5>
+                    <ul style="color: #38383e;">
+                        <li><a href="/autoship-program/">Autoship Program</a></li>
+                        <li><a href="/zogics-financing/">Zogics Financing</a></li>
+                        <li><a href="/reviews/">Reviews</a></li>
+                        <li><a href="/gsa-contracts/">GSA Contracts</a></li>
+                        <li><a href="/request-a-quote/">Request a Quote</a></li>
+                        <li><a href="/shipping-info/">Shipping Info</a></li>
+                        <li><a href="/returns/">Returns</a></li>
+                    </ul>
+                </div>
+                <div class="column-item col-sm-3">
+                    <h5 style="color: #38383e;">Support</h5>
+                    <ul style="color: #38383e;">
+                        <li><a href="https://pages.zogics.com/apply-to-zogics-elite-preferred-vendor-progam">Preferred Vendor Program</a></li>
+                        <li><a href="/vendor-inquiries/">Vendor Inquiries</a></li>
+                        <li><a href="/distributor-inquiries/">Distributor Inquiries</a></li>
+                        <li><a href="/faq/">FAQ</a></li>
+                        <li><a href="/resources/">Product Resources</a></li>
+                    </ul>
+                </div>
+            </div>
+            <!-- End Footer Columns -->
+        </div>
+    </section>
+
+    <div id="bottom-footer">
+        <div class="container text-{{theme_settings.copyright_alignment}}">
+            <div class="footer-logo">
+                {{> components/common/store-logo}}
+            </div>
+
+            <!-- BEGIN Need Help Block -->
+            <div id="NeedHelp" class="footerInfo row">
+                <h4>WE LOVE TO HELP</h4>
+                <div class="phone col-sm-4"><a href="tel:888.623.0088" title="888.623.0088"><svg width="30" height="32"><use xlink:href="#icon-phone"></use></svg>888.623.0088</a></div>
+                <div class="live-chat col-sm-4"><a id="click-to-chat__cta--text" class="cta cta--blue" style="margin-top: 20px;" onclick="window.hubspot.messages.EXPERIMENTAL_API.requestWidgetOpen();"><svg width="34" height="32"><use xlink:href="#icon-live-chat"></use></svg>LIVE CHAT</a></div>
+                <div class="mail col-sm-4"><a href="mailto:hello@zogics.com" title="hello@zogics.com"><svg width="37" height="37"><use xlink:href="#icon-mail"></use></svg>hello@zogics.com</a></div>
+            </div>
+            <!-- END Need Help Block -->
+
+            <div class="row">
+                <div class="col-md-12 col-sm-12">
+                    {{> components/common/social-links}}
+                    {{> components/common/payment-icons}}
+                </div>
+
+                <div class="col-md-12 col-sm-12">
+                    {{#if theme_settings.show_copyright_footer}}
+                    <div class="footer-copyright">
+                        <p>&copy; <span id="copyright_year"></span> {{settings.store_name}}, LLC | <a href="/contact-us/">Contact Us</a> | <a href="/privacy-policy/">Privacy Policy</a> | <a href="/sitemap/">Sitemap</a></p>
+                    </div>
+                    <script type="text/javascript">
+                    document.getElementById("copyright_year").innerHTML = new Date().getFullYear();
+                    </script>
+                    {{/if}}
+                    {{#if theme_settings.show_powered_by}}
+                    <div class="powered-by">
+                        <p>eCommerce Software by <a href="http://bigcommerce.com">BigCommerce</a>.</p>
+                    </div>
+                    {{/if}}
+                </div>
+                {{#if theme_settings.show_template_by}}
+                <div class="col-md-12 col-sm-12">
+                    <div class="template-by">
+                        <p>BigCommerce Templates by <a href="http://themevale.com.com" target="_blank" rel="nofollow">ThemeVale.com</a></p>
+                    </div>
+                </div>
+                {{/if}}
+
+            </div>
+        </div>
+    </div>
+
+</footer>
+<script>
+    window.onload=function() {
+
+        var dataList = $(".btnQV").map(function() {
+            return $(this).data("product-id");
+        }).get();
+        productIdsOnPage = dataList.map(String);
+
+        var sstring = param('search_query');
+        var login = param('action');
+
+        function param(name) {
+            return (location.search.split(name + '=')[1] || '').split('&')[0];
+        }
+
+        var m,
+        productIdMap = {},
+        urlParams = decodeURIComponent(window.location.search);
+
+        fbq('track', 'PageView');
+
+        {{#if page.title '==' 'Search Results'}}
+
+        // Search events start -- only fire if the shopper lands on the /search.php page
+        if(sstring !=''){
+            fbq('track', 'Search', { content_ids: productIdsOnPage, content_type: 'product_group', search_string: sstring });
+        }
+        // Search events end
+
+        {{/if}}
+
+        {{#if template '==' 'pages/auth/account-created' }}
+
+        // Search events start -- only fire if the shopper lands on the /search.php page
+        if(login == 'account_created'){
+            fbq('track', 'CompleteRegistration', {});
+        }
+        // Search events end
+
+        {{/if}}
+
+
+    }
+</script>
+<a href="javascript:void(0);" id="back-to-top"><i class="fa fa-angle-up"></i></a>

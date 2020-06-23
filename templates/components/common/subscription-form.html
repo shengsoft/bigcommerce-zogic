@@ -1,0 +1,38 @@
+<div id="footerSubcribeForm">
+    <h5><span style="font-size: 25px; font-weight: 700; color: #fff; font-family: Roboto Condensed">Sign Up for Email</span></h5>
+    <p class="noteSubcribeForm"><span style="font-size: 15px; font-weight: 400; line-height: 25px;">Join thousands of fitness pros and get the latest deals, special offers, and resources right to your inbox.</span></p>
+    
+    <!--[if lte IE 8]>
+    <script charset="utf-8" type="text/javascript" src="//js.hsforms.net/forms/v2-legacy.js"></script>
+    <![endif]-->
+    <script charset="utf-8" type="text/javascript" src="//js.hsforms.net/forms/v2.js"></script>
+    <script>
+     hbspt.forms.create({
+    portalId: "477652",
+    formId: "a1844ba4-01f1-4c55-929c-1c9696c4c4cf"
+    });
+
+    var b = setInterval(function(){
+        // Form 0
+        for (let i = 0; i < $('iframe').length; i++) {
+            var iframe = document.getElementById("hs-form-iframe-"+i);
+            if (iframe) {
+                var form0 = $(iframe.contentWindow.document)[0];
+                if ($(iframe).parents('#footerSubcribeForm').length == 1) {
+                $(form0).find('.hs_email').css({"display":"inline-block","width":"100%","max-width":"500px","margin-bottom":"0"}).addClass('is_ready');
+                $(form0).find('.hs_email label').css({"display":"none"});
+                $(form0).find('.hs_email .hs-input').css({"width":"100%", "max-width":"100%","padding-right":"25px","color":"#bababb","font-style":"italic","font-family":"Roboto,Arial,Helvetica,sans-serif"});
+                
+                $(form0).find('.hs_submit').css({"display":"inline-block", "position":"absolute", "top":"0px", "right":"0px"});
+                $(form0).find('.hs_submit .actions').css({"padding":"0", "margin":"0"});
+                $(form0).find('.hs_submit .actions .hs-button').css({"padding":"14px 24px 12px 24px","border-top-left-radius":"0","border-bottom-left-radius":"0","text-transform":"uppercase","background":"#008bab","border":"1px solid #008bab","font-family":"Roboto,Arial,Helvetica,sans-serif"});
+            }
+                if($(form0).find('.hs_email').length && $(form0).find('.hs_email').hasClass('is_ready')){
+                    clearInterval(b);
+                }
+            }
+        }
+
+    }, 500);
+    </script>
+</div>

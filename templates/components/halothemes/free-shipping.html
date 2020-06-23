@@ -1,0 +1,16 @@
+ <dl class="productView-info">
+{{#if product.shipping}}
+    {{#if product.shipping.calculated}}
+        <dt class="productView-info-name">{{lang 'products.shipping'}}</dt>
+        <dd class="productView-info-value">{{lang 'products.shipping_calculated'}}</dd>
+    {{else}}
+        {{#if product.shipping.price.value '===' 0}}
+            <dt class="productView-info-name">{{lang 'products.shipping'}}</dt>
+            <dd class="productView-info-value hl_shipping_free">{{lang 'products.shipping_free'}}</dd>
+        {{else}}
+            <dt class="productView-info-name">{{lang 'products.shipping'}}</dt>
+            <dd class="productView-info-value">{{lang 'products.shipping_fixed' amount=product.shipping.price.formatted}}</dd>
+        {{/if}}
+    {{/if}}
+{{/if}}
+</dl>

@@ -1,0 +1,59 @@
+
+{{#each categories}}
+  {{#if id '==' ../cateId}}
+    <!-- BEGIN Home has banner and has count down -->
+    <div class="warpBlock {{#if ../../has_img_right}}warpBlockBanner{{/if}} container-fluid wow fadeInUp animated" data-wow-delay="100ms">
+     <section class="haloProductsByCategory" id="product-by-category-{{id}}" data-prod-by-cat-name="{{name}}" data-prod-by-cat-url="{{this.url}}">
+      <div class="category-title">
+          <h3 class="module-heading">{{name}}</h3>
+          <div class="desc-textCate"></div>
+          {{#if ../../has_count_down}}
+          <div id="countDowntimer"><i class="fa fa-clock-o"></i><span id="number">{{../../../has_count_down}}</span></div>
+          {{/if}}
+          <a class="view-action btn btn-primary" href="{{url}}">View All</a>
+      </div>
+      <div class="category-products module-wrapper">
+          <div class="owl-carousel"></div>
+      </div>  
+      {{#if ../../has_img_right}}
+        <div class="bannerBlock">
+            <a title="{{../../../alt_img}}" href="#placeholder_link">
+                <img src="{{../../../has_img_right}}" alt="{{../../../alt_img}}" />
+            </a>
+        </div>
+      {{/if}}    
+  </section>      
+    </div>
+  {{/if}}
+{{/each}}
+
+
+<script type="text/javascript">
+  // Set the date we're counting down to        
+  var countDownDate = new Date( document.getElementById("number").innerHTML ).getTime();
+  // Update the count down every 1 second
+  var countdownfunction = setInterval(function() {
+
+    // Get todays date and time
+    var now = new Date().getTime();
+    
+    // Find the distance between now an the count down date
+    var distance = countDownDate - now;
+    
+    // Time calculations for days, hours, minutes and seconds
+    var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+    var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+    var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+    
+    // Output the result in an element with id="countDowntimer"
+    document.getElementById("number").innerHTML = days + "d " + hours + "h "
+    + minutes + "m " + seconds + "s ";
+    
+    // If the count down is over, write some text 
+    if (distance < 0) {
+        clearInterval(countdownfunction);
+        document.getElementById("number").innerHTML = "EXPIRED";
+    }
+}, 1000);
+</script>

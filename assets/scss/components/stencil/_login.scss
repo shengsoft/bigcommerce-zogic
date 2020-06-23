@@ -1,0 +1,88 @@
+// =============================================================================
+// LOGIN (CSS)
+// =============================================================================
+
+
+
+.login-form {
+    @media (min-width: 991px){
+        padding-top: 26px;
+        padding-left: 45px;        
+    }
+    .form-actions {
+        text-align: left;
+        input.btn, a.forgot-password {
+            display: inline-block;
+            vertical-align: middle;
+        }
+        @media (max-width: 480px){
+            a.forgot-password {
+                margin-left: 0 !important;
+                display: inline;
+            }
+            input.btn{
+                width: 100%;
+            }
+
+        }
+        a.forgot-password {
+            color: $anchor-font-color-hover;
+            border-bottom: 1px dotted $anchor-font-color-hover;
+            line-height: 15px;
+            margin-top: 6px;
+            margin-left: 37px;
+            
+            &:hover{
+                color: $anchor-font-color;
+                border-bottom: 1px dotted $anchor-font-color;
+            }
+        }
+    }
+}
+p.new-customer-intro {
+    margin-bottom: 19px;
+}
+.new-customer-fact-list {
+        margin-bottom: 25px;
+    .new-customer-fact {
+        line-height: 25px;
+    }
+}
+.new-customer {
+    & .panel {
+        border-radius: 3px;
+    }
+    & .panel-header {
+        background: transparent;
+        @media (min-width: 991px){
+            padding: 33px 0 0 69px;
+        }
+        @media (max-width: 480px){
+            padding-left: 0;
+            padding-right: 0;
+        }
+    }
+    & .panel-body {
+        background: transparent;
+        @media (min-width: 991px){
+            padding: 19px 0 40px 68px;
+
+        }
+        @media (max-width: 480px){
+            padding-right: 0;
+            padding-left: 0;
+        }
+    }
+}
+
+.new-customer-intro {
+    margin-bottom: 0;
+}
+
+.new-customer-fact-list {
+    margin-left: spacing("base");
+}
+
+.new-customer-fact {
+    padding-left: spacing("half");
+}

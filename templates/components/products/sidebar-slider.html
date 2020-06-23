@@ -1,0 +1,22 @@
+<div id="sideTopSellers" class="sidebarBlock accordion-block sidebarEffects-window">
+   <div
+        class="accordion-navigation toggleLink"
+        role="button"
+        data-collapsible="#facetedSearch-content--TopSellers">
+        <h5 class="accordion-title side-module-heading"><span>{{lang 'products.top' }}</span></h5>
+
+        <div class="accordion-navigation-actions">
+            {{#if selected}}
+                <a href="{{ remove_url }}" class="facetedSearch-clearLink" data-faceted-search-facet>{{lang 'search.faceted.clear'}}</a>
+            {{/if}}
+            <i class="fa fa-chevron-up accordion-indicator toggleLink-text toggleLink-text--off">
+            </i>
+            <i class="fa fa-chevron-down accordion-indicator toggleLink-text toggleLink-text--on">
+            </i>
+        </div>
+    </div>
+    <div id="facetedSearch-content--TopSellers" class="accordion-content">
+	   {{> components/products/side-carousel products=products}}
+	</div>
+</div>
+

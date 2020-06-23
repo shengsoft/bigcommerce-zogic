@@ -1,0 +1,25 @@
+<div class="productBlockPage sidebarBlock">  
+    <div class="product-pagination top">
+        {{> components/halothemes/product-display-mode-buttons}}
+        {{> components/products/filter sort=pagination.brand.sort}}
+        {{> components/common/paginator pagination.brand}} 
+    </div>
+
+    <form action="{{urls.compare}}" method='POST' data-product-compare {{#if settings.data_tag_enabled}} data-list-name="Brand: {{brand.name}}" {{/if}}>
+        {{#if theme_settings.product_list_display_mode '===' 'grid'}}
+            {{> components/products/grid products=brand.products show_compare=brand.show_compare theme_settings=theme_settings columns=theme_settings.categorypage_products_column_count event="list"}}
+        {{else}}
+            {{> components/products/list products=brand.products show_compare=brand.show_compare theme_settings=theme_settings columns=theme_settings.categorypage_products_column_count event="list"}}
+        {{/if}}
+    </form>
+
+    <div class="product-pagination bottom">
+
+        <div class="compare-link">
+            <a class="btn btn-primary" href="{{urls.compare}}" data-compare-nav>{{lang 'common.compare'}}<span class="countPill countPill--positive countPill--alt"></span></a>
+        </div>
+
+         {{> components/common/paginator pagination.brand}}
+         
+    </div>
+</div>

@@ -1,0 +1,450 @@
+<div class="productView" {{#if settings.data_tag_enabled}}data-event-type="product" data-entity-id="{{product.id}}" data-name="{{product.title}}" data-list-name="{{#each product.category}}{{#if @first}}{{this}}{{/if}}{{/each}}" data-product-category="{{#each product.category}}{{#if @last}}{{this}}{{else}}{{this}}, {{/if}}{{/each}}" data-product-brand="{{product.brand.name}}" data-product-price="{{#if product.price.with_tax}}{{product.price.with_tax.value}}{{else}}{{product.price.without_tax.value}}{{/if}}" data-product-variant="single-product-option"{{/if}}>
+    {{#each product.reviews.messages}}
+        {{#if error}}
+            {{>components/common/alert-error error}}
+        {{/if}}
+        {{#if success}}
+            {{>components/common/alert-success success}}
+        {{/if}}
+    {{/each}}
+    <div class="productViewTop">
+        <div class="row">
+            <section class="productView-images col-md-6" data-image-gallery>
+                <div class="badges-container">
+                    {{#or product.price.non_sale_price_with_tax product.price.non_sale_price_without_tax}}
+                    <div class="sale-badge">{{lang 'halothemes.sale_badge'}}</div>
+                    {{/or}}
+                    {{#if product.out_of_stock}}
+                        <div class="product-out-of-stock">
+                            <div class="sale-stock-badge">Out of Stock</div>
+                        </div>
+                    {{/if}}
+                    {{#if product.out_of_stock_message }}
+                        <div class="soldOut-badge">{{lang 'products.sold_out'}}</div>
+                    {{/if}}
+                </div>
+
+                {{>components/halothemes/halo-gallery}}
+
+                <div class="share-social-media hidden-sm visible-md visible-lg">{{>components/common/share}}</div>
+            </section>
+
+            <section class="productView-details col-md-6">
+                <div class="productView-product">
+                    {{#if product.brand}}
+                    <h2 class="productView-brand" {{#if schema}} itemprop="brand" itemscope itemtype="http://schema.org/Brand" {{/if}}>
+                        <a href="{{product.brand.url}}"{{#if schema}} itemprop="url"{{/if}}><span{{#if schema}} itemprop="name"{{/if}}>{{product.brand.name}}</span></a>
+                    </h2>
+                    {{/if}}
+                    <h1 class="productView-title" {{#if schema}}itemprop="name"{{/if}} data-product-view-url="{{product.url}}">{{product.title}}</h1>
+                    <div class="yotpo bottomLine" data-product-id="{{ product.id }}"></div>
+                    <div class="productView-rating"{{#if product.num_reviews '>' 0}}{{#if schema}} itemprop="aggregateRating" itemscope itemtype="http://schema.org/AggregateRating"{{/if}}{{/if}}>
+                        {{#if settings.show_product_rating}}
+                            {{#if product.num_reviews '>' 0}}
+                                {{#if schema}}
+                                    <meta itemprop="ratingValue" content="{{product.rating}}">
+                                    <meta itemprop="ratingCount" content="{{product.num_reviews}}">
+                                    <meta itemprop="reviewCount" content="{{product.num_reviews}}">
+                                {{/if}}
+                            {{/if}}
+                            {{> components/products/ratings rating=product.rating}}
+                            <span class="productView-reviewLink reviewLinkCount">
+                                {{#if product.num_reviews '>' 0}}
+                                    <a href="{{product.url}}#product-reviews">
+                                        {{lang 'products.reviews.link_to_review' total=product.num_reviews}}
+                                    </a>
+                                {{else}}
+                                    {{lang 'products.reviews.link_to_review' total=product.num_reviews}}
+                                {{/if}}
+                            </span>
+                        {{/if}}
+                        {{#if settings.show_product_reviews}}
+                            <span class="productView-reviewLink">
+                                <a href="{{product.url}}{{#if is_ajax}}#writeReview{{/if}}"
+                                   {{#unless is_ajax }}data-reveal-id="modal-review-form"{{/unless}}>
+                                   {{lang 'products.reviews.new'}}
+                                </a>
+                            </span>
+                            {{> components/products/modals/writeReview}}
+                        {{/if}}
+                    </div>
+                    {{#if product.call_for_price}}
+                        <p class="productView-price">
+                            <span>{{product.call_for_price}}</span>
+                        </p>
+                    {{/if}}
+                    {{#if product.price}}
+                        <div class="productView-price">
+                            {{#or customer (if theme_settings.restrict_to_login '!==' true)}}
+                                {{> components/products/price price=product.price schema_org=schema}}
+                            {{else}}
+                                {{> components/common/login-for-pricing}}
+                            {{/or}}
+                        </div>
+                    {{/if}}
+
+                    {{#each product.custom_fields}}
+                        {{#if name '==' 'free_shipping_type'}}
+                            {{#if value '==' 'FS'}}
+                                <div class="freeShipping-section {{value}}">
+                                    <img class="freeShipping-icon" src="/product_images/uploaded_images/free-shipping-icon.png" alt="">
+                                    <p class="freeShipping-title"></p>
+                                    <a class="details-link" href="#">Details</a>
+                                </div>
+                            {{/if}}
+                            {{#if value '==' 'FS299'}}
+                                <div class="freeShipping-section {{value}}">
+                                    <img class="freeShipping-icon" src="/product_images/uploaded_images/free-shipping-icon.png" alt="">
+                                    <p class="freeShipping-title"></p>
+                                    <a class="details-link" href="#">Details</a>
+                                </div>
+                            {{/if}}
+                        {{/if}}
+                    {{/each}}
+
+                    {{product.detail_messages}}
+                    <dl class="productView-info">
+                        {{#if product.sku}}
+                            <dt class="productView-info-name">{{lang 'products.sku'}}</dt>
+                            <dd class="productView-info-value" data-product-sku>{{product.sku}}</dd>
+                        {{/if}}
+                        {{#if product.upc}}
+                            <span style="{{#each product.custom_fields}}{{#and (if name '==' 'request_quote') (if value '==' 'true')}} display: none; {{/and}}{{/each}}">
+                                <dt class="productView-info-name">{{lang 'products.upc'}}</dt>
+                                <dd class="productView-info-value" data-product-upc>{{product.upc}}</dd>
+                            </span>
+                        {{/if}}
+                        {{#if product.condition}}
+                            <span style="{{#each product.custom_fields}}{{#and (if name '==' 'request_quote') (if value '==' 'true')}} display: none; {{/and}}{{/each}}">
+                                <dt class="productView-info-name">{{lang 'products.condition'}}</dt>
+                                <dd class="productView-info-value">{{product.condition}}</dd>
+                            </span>
+                        {{/if}}
+                        {{#if product.availability}}
+                            <span style="{{#each product.custom_fields}}{{#and (if name '==' 'request_quote') (if value '==' 'true')}} display: none; {{/and}}{{/each}}">
+                                <dt class="productView-info-name">{{lang 'products.availability'}}</dt>
+                                <dd class="productView-info-value">{{product.availability}}</dd>
+                            </span>
+                        {{/if}}
+                        {{#if product.weight}}
+                            <dt class="productView-info-name">{{lang 'products.weight'}}</dt>
+                            <dd class="productView-info-value" data-product-weight>{{product.weight}}</dd>
+                        {{/if}}
+                        {{#if product.min_purchase_quantity}}
+                            <span style="{{#each product.custom_fields}}{{#and (if name '==' 'request_quote') (if value '==' 'true')}} display: none; {{/and}}{{/each}}">
+                                <dt class="productView-info-name">{{lang 'products.min_purchase_quantity'}}</dt>
+                                <dd class="productView-info-value">{{lang 'products.purchase_units' quantity=product.min_purchase_quantity}}</dd>
+                            </span>
+                        {{/if}}
+                        {{#if product.max_purchase_quantity}}
+                            <span style="{{#each product.custom_fields}}{{#and (if name '==' 'request_quote') (if value '==' 'true')}} display: none; {{/and}}{{/each}}">
+                                <dt class="productView-info-name">{{lang 'products.max_purchase_quantity'}}</dt>
+                                <dd class="productView-info-value">{{lang 'products.purchase_units' quantity=product.max_purchase_quantity}}</dd>
+                            </span>
+                        {{/if}}
+                        {{#if product.gift_wrapping_available}}
+                            <span style="{{#each product.custom_fields}}{{#and (if name '==' 'request_quote') (if value '==' 'true')}} display: none; {{/and}}{{/each}}">
+                                <dt class="productView-info-name">{{lang 'products.gift_wrapping'}}</dt>
+                                <dd class="productView-info-value">{{lang 'products.gift_wrapping_available'}}</dd>
+                            </span>
+                        {{/if}}
+                        {{#if product.shipping}}
+                            <span style="
+                                {{#each product.custom_fields}}
+                                    {{#and (if name '==' 'request_quote') (if value '==' 'true')}} display: none; {{/and}}
+                                    {{#and (if name '==' 'free_shipping_type') (if value '==' 'FS')}} display: none; {{/and}}
+                                    {{#and (if name '==' 'free_shipping_type') (if value '==' 'FS299')}} display: none; {{/and}}
+                                {{/each}}
+                            ">
+                                {{#or (if product.sku '===' 'Z1000-4') (if product.sku '===' 'Z800-4') (if product.sku '===' 'Z2000-4') (if product.sku '===' 'Z1500-4') (if product.sku '===' 'Z650') (if product.sku '===' 'Z650B')}}
+                                    <dt class="productView-info-name">{{lang 'products.shipping'}}</dt>
+                                    <dd class="productView-info-value hl_shipping_free">{{lang 'products.shipping_free'}}</dd>
+                                    {{else}}
+                                    {{#if product.shipping.calculated}}
+                                        <dt class="productView-info-name">{{lang 'products.shipping'}}</dt>
+                                        <dd class="productView-info-value">{{lang 'products.shipping_calculated'}}</dd>
+                                    {{else}}
+                                        {{#if product.shipping.price.value '===' 0}}
+                                        <dt class="productView-info-name">{{lang 'products.shipping'}}</dt>
+                                        <dd class="productView-info-value hl_shipping_free">{{lang 'products.shipping_free'}}</dd>
+                                        {{else}}
+                                            <dt class="productView-info-name">{{lang 'products.shipping'}}</dt>
+                                            <dd class="productView-info-value">{{lang 'products.shipping_fixed' amount=product.shipping.price.formatted}}</dd>
+                                        {{/if}}
+                                    {{/if}}
+                                {{/or}}
+                            </span>
+			            {{/if}}
+			            {{#if product.bulk_discount_rates.length}}
+                            <dt class="productView-info-name">{{lang 'products.bulk_pricing.title'}}</dt>
+                            <dd class="productView-info-value">
+                                <a href="{{product.url}}"
+                                    {{#unless is_ajax }}data-reveal-id="bulkPricingModal" {{/unless}}>
+                                    {{lang 'products.bulk_pricing.view'}}
+                                </a>
+                            </dd>
+
+                            <div id="bulkPricingModal" class="modal modal--small" data-reveal>
+                                <div class="modal-header">
+                                    <h2 class="modal-header-title">{{lang 'products.bulk_pricing.modal_title'}}</h2>
+                                    <a href="#" class="modal-close" aria-label="Close"><span aria-hidden="true">&#215;</span></a>
+                                </div>
+                                <div class="modal-body">
+                                    <p>{{lang 'products.bulk_pricing.instructions'}}</p>
+                                    <ul>
+                                    {{#each product.bulk_discount_rates}}
+                                        <li>
+                                            {{lang 'products.bulk_pricing.range' min=min max=max}}
+                                            {{#if type '===' 'percent'}}
+                                                {{lang 'products.bulk_pricing.percent' discount=discount.formatted}}
+                                            {{/if}}
+                                            {{#if type '===' 'fixed'}}
+                                                {{lang 'products.bulk_pricing.fixed' discount=discount.formatted}}
+                                            {{/if}}
+                                            {{#if type '===' 'price'}}
+                                                {{lang 'products.bulk_pricing.price' discount=discount.formatted}}
+                                            {{/if}}
+                                        </li>
+                                    {{/each}}
+                                    </ul>
+                                </div>
+                            </div>
+                        {{/if}}
+                    </dl>
+                    <div class="productView-summary">
+                        {{summary}}
+                    </div>
+                </div>
+
+                {{#each product.custom_fields}}
+                    {{#and (if name '==' 'request_quote') (if value '==' 'true')}}
+                        <div class="requestQuote">
+                            <p class="requestQuote-text">Click below to send us your project details & get a quick quote.</p>
+                            <p class="requestQuote-text">
+                                If you need help on where to start, call us at <a href="tel:888-623-0088">888.623.0088</a> or
+                                <a href="#" onclick="window.hubspot.messages.EXPERIMENTAL_API.requestWidgetOpen();">chat us up</a>
+                            </p>
+                            <a class="zogics-bl-button" data-reveal-id="halo-request-a-quote-form" href="#" title="Request For Delivery">Request a Quote</a>
+                        </div>
+                    {{/and}}
+                {{/each}}
+
+                <div class="productView-options"
+                     style="{{#each product.custom_fields}}{{#and (if name '==' 'request_quote') (if value '==' 'true')}} display: none; {{/and}}{{/each}}">
+
+                    {{#if product.release_date }}
+                        <p style="font-weight: 700; color: #ea3a02; font-size: 14px;">{{product.release_date}}</p>
+                    {{/if}}
+
+                    <form class="form" method="post" action="{{product.cart_url}}" enctype="multipart/form-data"
+                          data-cart-item-add>
+                        <input type="hidden" name="action" value="add">
+                        <input type="hidden" name="product_id" value="{{product.id}}"/>
+
+
+                            {{#each product.customizations}}
+                                {{{dynamicComponent 'components/products/customizations'}}}
+                            {{/each}}
+                        <div data-product-option-change style="display:none;">
+
+                            {{#each product.custom_fields}}
+                                {{#if name '===' 'has-size-chart'}}
+                                    {{>components/products/modals/sizeChart}}
+                                {{/if}}
+                            {{/each}}
+
+                            {{#each product.options}}
+                                {{{dynamicComponent 'components/products/options'}}}
+                            {{/each}}
+
+                        </div>
+
+                        {{#if product.event_date}}
+                            {{> components/products/event-date}}
+                        {{/if}}
+
+                        <div class="form-field form-field--stock{{#unless product.stock_level}} u-hiddenVisually{{/unless}}">
+                            <label class="form-label form-label--alternate">
+                                {{lang 'products.current_stock'}}
+                                <span data-product-stock>{{product.stock_level}}</span>
+                            </label>
+                        </div>
+                        {{#if product.can_purchase}}
+                            {{> components/products/add-to-cart}}
+                        {{/if}}
+                        <div class="share-social-media hidden-md hidden-lg">{{>components/common/share}}</div>
+                        {{#if product.out_of_stock}}
+                            <div class="out-stockWarp">
+                                <div class="out-of-stock-notification">
+                                    <div class="notification-copy">
+                                        <p><span class="out-of-stock-header">This product is currently out of stock.</span>  Sign up to receive email updates on this product's availability and when it will be back in stock.</p>
+                                    </div>
+                                    <a href="https://zogics.formstack.com/forms/product_update " class="zogics-or-button" target="_blank">
+                                        Get Notified
+                                    </a>
+                                </div>
+                            {{#if product.out_of_stock_message}}
+                                {{>components/common/alert-error-out-of-stock product.out_of_stock_message}}
+                            {{else}}
+                                {{>components/common/alert-error-out-of-stock (lang 'products.sold_out')}}
+                            {{/if}}
+                            </div>
+                        {{/if}}
+                    </form>
+
+                    {{#if settings.show_wishlist}}
+                        <form class="form wishlist-form" method="post" action="{{product.add_to_wishlist_url}}" data-wishlist-add>
+                            <input type="hidden" name="variation_id" value="">
+                            <button class="button" type="submit">
+                                <i class="fa fa-heart"></i> <span>{{lang 'account.wishlists.add_item'}}</span>
+                            </button>
+                        </form>
+                    {{/if}}
+                </div>
+
+
+                {{{snippet 'product_details'}}}
+            </section>
+        </div>
+    </div>
+    <div class="productView-description-section">
+    <article class="productView-description col-sm-8" {{#if schema}} itemprop="description" {{/if}}>
+        <ul class="tabs" data-tab>
+            <li class="tab is-active">
+                <a class="tab-title" href="#tab-description">{{lang 'products.description'}}</a>
+            </li>
+            <li class="tab hidden-md hidden-lg">
+                <a class="tab-title" href="#specifications-tab-content">Specifications</a>
+            </li>
+            <li class="tab hidden-md hidden-lg">
+                <a class="tab-title" href="#support-documents-tab-content">Support Documents &amp; Downloads</a>
+            </li>
+            {{#if product.videos}}
+            <li class="tab">
+                <a href="#tab-video" class="tab-title">
+                    Video
+                </a>
+            </li>
+            {{/if}}
+            {{#if product.warranty}}
+            <li class="tab">
+                <a class="tab-title" href="#tab-warranty">{{lang 'products.warranty'}}</a>
+            </li>
+            {{/if}}
+
+        </ul>
+        <div class="tabs-contents">
+            <div class="tab-content is-active" id="tab-description" {{#if settings.data_tag_enabled}} data-event-type="product" {{/if}}>
+                {{{product.description}}} {{{snippet 'product_description'}}}
+            </div>
+
+               <div class="tab-content" id="specifications-tab-content"></div>
+
+               <div class="tab-content" id="support-documents-tab-content"></div>
+
+            {{#if product.videos}}
+            <div class="tab-content" id="tab-video">
+               {{>components/products/videos product.videos}}
+            </div>
+            {{/if}}
+            {{#if product.warranty}}
+            <div class="tab-content" id="tab-warranty">
+                {{{product.warranty}}}
+            </div>
+            {{/if}}
+
+        </div>
+    </article>
+
+    {{#each product.custom_fields}}
+        {{#if name '==' 'free_shipping_type'}}
+            {{#if value '==' 'FS'}}
+                <div class="freeShipping-right col-sm-4 hidden-sm visible-md visible-lg">
+                    <div class="frame-border">
+                        <img class="freeShipping-icon" src="/product_images/uploaded_images/free-shipping-icon.png" alt="">
+                        <div class="freeShipping-copy">
+                            <p class="freeShipping-title"></p>
+                            <p class="message">All cases of Zogics branded wipes, cleaners, body care, & fitness accessories ship fast & free!</p>
+                            <a class="details-link" href="#">Details</a>
+                        </div>
+                    </div>
+                </div>
+            {{/if}}
+            {{#if value '==' 'FS299'}}
+                <div class="freeShipping-right col-sm-4 hidden-sm visible-md visible-lg">
+                    <div class="frame-border">
+                        <img class="freeShipping-icon" src="/product_images/uploaded_images/free-shipping-icon.png" alt="">
+                        <div class="freeShipping-copy">
+                            <p class="freeShipping-title"></p>
+                            <p class="message">All cases of Zogics branded wipes, cleaners, body care, & fitness accessories ship fast & free!</p>
+                            <a class="details-link" href="#">Details</a>
+                        </div>
+                    </div>
+                </div>
+            {{/if}}
+            {{#if value '==' 'WFS'}}
+                <div class="freeShipping-right col-sm-4 hidden-sm visible-md visible-lg" data-shipping-type="WFS">
+                    <div class="frame-border">
+                        <img class="freeShipping-icon" src="/product_images/uploaded_images/free-shipping-icon.png" alt="">
+                        <div class="freeShipping-copy">
+                            <p class="freeShipping-title"></p>
+                            <p class="message">All cases of Zogics branded wipes, cleaners, body care, & fitness accessories ship fast & free!</p>
+                            <a class="details-link" href="#">Details</a>
+                        </div>
+                    </div>
+                </div>
+            {{/if}}
+        {{/if}}
+    {{/each}}
+
+    <div class="productView-description-right col-sm-4 hidden-sm visible-md visible-lg">
+        <div class="Specifications tab frame-border">
+           <h5>Specifications</h5>
+           <div id="specifications-tab-content">
+
+           </div>
+        </div>
+        <div class="Support-Documents tab frame-border">
+           <h5>Support Documents &amp; Downloads</h5>
+           <div id="support-documents-tab-content">
+
+           </div>
+        </div>
+    </div>
+</div>
+
+</div>
+
+<div class="mfp-hide" id="freeShipping-popup">
+    <div class="img-container">
+        <img class="popup-img" src="/product_images/uploaded_images/free-shipping-icon.png" alt="" >
+    </div>
+    <h2>All Zogics Branded Cases Ship Free</h2>
+    <p class="message">This item ships free! And so do all of our other Zogics branded cases of wipes, cleaners, body care, &
+            fitness accessories. Free shipping is only available on ground shipping to commercial addresses in the 48 contiguous United States.</p>
+</div>
+
+<div id="previewModal" class="modal modal--large" data-reveal>
+    <a href="#" class="modal-close" aria-label="{{lang 'common.close'}}" role="button">
+        <span aria-hidden="true">&#215;</span>
+    </a>
+    <div class="modal-content"></div>
+    <div class="loadingOverlay"></div>
+</div>
+
+<!-- BEGIN ASK AN EXPERT POPUP -->
+{{> components/halothemes/halo-ask-an-expert}}
+<!-- END ASK AN EXPERT POPUP -->
+<!-- BEGIN ASK AN EXPERT POPUP -->
+{{> components/halothemes/halo-request-a-quote}}
+<!-- END ASK AN EXPERT POPUP -->
+<div class="yotpo yotpo-main-widget" style="background: #fff !important;"
+data-product-id="{{ product.id }}"
+data-price="{{ product.price.without_tax.value }}"
+data-currency="{{ currency_selector.active_currency_code }}"
+data-name="{{ product.title }}"
+data-url="{{ product.url }}"
+data-image-url="{{getImage product.main_image}}"
+data-description="{{ product.description }}">
+    <h2>Reviews</h2>
+</div>

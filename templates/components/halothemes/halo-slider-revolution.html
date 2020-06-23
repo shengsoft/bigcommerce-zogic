@@ -1,0 +1,197 @@
+{{{stylesheet '/assets/scss/styles-revolution.css'}}}
+<!-- <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script> -->
+<script src="{{cdn 'assets/js/theme/halothemes/jquery.themepunch.plugins.min.js'}}"></script>
+<script src="{{cdn 'assets/js/theme/halothemes/jquery.themepunch.revolution.min.js'}}"></script>
+
+
+<div class="bannercontainer responsive fullwidthbanner-container">
+    <div class="revolution-banner">
+        <ul>
+        </ul>
+        <div class="tp-bannertimer"></div>
+    </div>
+</div>
+<script type="text/javascript">
+    $.fn.HaloSlider = function(param) {
+        // Defaut params
+        param = $.extend({
+            slide: 'left',
+            slotamount: '10',
+            link: '',
+            link_img: '//cdn2.bigcommerce.com/n-nr1m3w/9tvcfx9u/product_images/uploaded_images/revolution-image-1.jpg',
+            caption_top: '<span class="heading-top">The trusted supplier to over 20,000 gyms, clubs, and facilities </span class="heading-bottom">Let’s <span>work well(ness)</span> together.</span>',
+            caption_top_x: '0',
+            caption_top_y: '100',
+            caption_top_speed: '900',
+            caption_top_start: '800',
+            caption_top_easing: 'easeOutBack',
+
+            caption_mid: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.',
+            caption_mid_x: '0',
+            caption_mid_y: '300',
+            caption_mid_speed: '900',
+            caption_mid_start: '1900',
+            caption_mid_easing: 'easeOutBack',
+
+            caption_bot: '<span><a href="#" title="LET’S GET STARTED">LET’S GET STARTED <svg><use xlink:href="#icon-arrow-right"></use></svg></a></span>',
+            caption_bot_x: '0',
+            caption_bot_y: '480',
+            caption_bot_speed: '300',
+            caption_bot_start: '1000',
+            caption_bot_easing: 'easeOutExpo'
+        }, param);
+        $(this).attr('data-transition','slide'+param.slide).attr('data-slotamount',param.slotamount).attr('data-link',param.link).attr('data-thumb',param.link_img);
+        $(this).append('<div class="slotholder"><img src="'+param.link_img+'" class="defaultimg"></div>');
+
+        $(this).append('<div class="caption lft very_big_white start" data-x="'+param.caption_top_x+'" data-y="'+param.caption_top_y+'" data-speed="'+param.caption_top_speed+'" data-start="'+param.caption_top_start+'" data-easing="easeOutBack">'+param.caption_top+'</div>');
+
+        $(this).append('<div class="caption lft big_orange start" data-x="'+param.caption_mid_x+'" data-y="'+param.caption_mid_y+'" data-speed="'+param.caption_mid_speed+'" data-start="'+param.caption_mid_start+'" data-easing="'+param.caption_mid_easing+'"><span>'+param.caption_mid+'</span></div>');
+
+        $(this).append('<div class="caption lft start slider-btn" data-x="'+param.caption_bot_x+'" data-y="'+param.caption_bot_y+'" data-speed="'+param.caption_bot_speed+'" data-start="'+param.caption_bot_start+'" data-easing="'+param.caption_bot_easing+'">'+param.caption_bot+'</div>');
+
+        return this;
+    }
+    function slideItem(slide) {
+        var el = $('<li></li>');
+        $(slide+' > ul').append(el);
+        return el;
+    }
+    jQuery(document).ready(function() {
+        slideItem('.revolution-banner').HaloSlider({
+            slide: 'left',
+            slotamount: '10',
+            link: '',
+            link_img: '/product_images/uploaded_images/revolution-image-1.jpg',
+            caption_top: '<span class="heading-top">The trusted supplier to over 20,000 gyms, clubs, and facilities</span><span class="heading-bottom">Let’s <span>work well(ness)</span> together.</span>',
+            caption_top_x: '0',
+            caption_top_y: '100',
+            caption_top_speed: '900',
+            caption_top_start: '1000',
+            caption_top_easing: 'easeOutBack',
+
+            caption_mid: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.',
+            caption_mid_x: '0',
+            caption_mid_y: '300',
+            caption_mid_speed: '900',
+            caption_mid_start: '1200',
+            caption_mid_easing: 'easeOutBack',
+
+            caption_bot: '<span><a href="#" title="LET’S GET STARTED">LET’S GET STARTED <svg><use xlink:href="#icon-arrow-right"></use></svg></a></span>',
+            caption_bot_x: '0',
+            caption_bot_y: '480',
+            caption_bot_speed: '300',
+            caption_bot_start: '1000',
+            caption_bot_easing: 'easeOutExpo'
+        });
+
+        // slideItem('.revolution-banner').HaloSlider({
+        //     slide: 'down',
+        //     slotamount: '10',
+        //     link: '',
+        //     link_img: '/product_images/uploaded_images/revolution-image-2.jpg',
+        //     caption_top: '<span class="heading-top">The trusted supplier to over 20,000 gyms, clubs, and facilities</span><span class="heading-bottom">Let’s <span>work well(ness)</span> together.</span>',
+        //     caption_top_x: '0',
+        //     caption_top_y: '100',
+        //     caption_top_speed: '900',
+        //     caption_top_start: '1200',
+        //     caption_top_easing: 'easeOutBack',
+
+        //     caption_mid: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.',
+        //     caption_mid_x: '0',
+        //     caption_mid_y: '300',
+        //     caption_mid_speed: '900',
+        //     caption_mid_start: '1900',
+        //     caption_mid_easing: 'easeOutBack',
+
+        //     caption_bot: '<span><a href="#" title="LET’S GET STARTED">LET’S GET STARTED <svg><use xlink:href="#icon-arrow-right"></use></svg></a></span>',
+        //     caption_bot_x: '0',
+        //     caption_bot_y: '480',
+        //     caption_bot_speed: '300',
+        //     caption_bot_start: '1000',
+        //     caption_bot_easing: 'easeOutExpo'
+        // });
+
+        // slideItem('.revolution-banner').HaloSlider({
+        //     slide: 'right',
+        //     slotamount: '10',
+        //     link: '',
+        //     link_img: '/product_images/uploaded_images/revolution-image-3.jpg',
+        //     caption_top: '<span class="heading-top">The trusted supplier to over 20,000 gyms, clubs, and facilities</span><span class="heading-bottom">Let’s <span>work well(ness)</span> together.</span>',
+        //     caption_top_x: '0',
+        //     caption_top_y: '100',
+        //     caption_top_speed: '1200',
+        //     caption_top_start: '1200',
+        //     caption_top_easing: 'easeOutBack',
+
+        //     caption_mid: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.',
+        //     caption_mid_x: '0',
+        //     caption_mid_y: '300',
+        //     caption_mid_speed: '900',
+        //     caption_mid_start: '1900',
+        //     caption_mid_easing: 'easeOutBack',
+
+        //     caption_bot: '<span><a href="#" title="LET’S GET STARTED">LET’S GET STARTED <svg><use xlink:href="#icon-arrow-right"></use></svg></a></span>',
+        //     caption_bot_x: '0',
+        //     caption_bot_y: '480',
+        //     caption_bot_speed: '300',
+        //     caption_bot_start: '1000',
+        //     caption_bot_easing: 'easeOutExpo'
+        // });
+
+        // slideItem('.revolution-banner').HaloSlider({
+        //     slide: 'up',
+        //     slotamount: '10',
+        //     link: '',
+        //     link_img: '/product_images/uploaded_images/revolution-image-4.jpg',
+        //     caption_top: '<span class="heading-top">The trusted supplier to over 20,000 gyms, clubs, and facilities</span><span class="heading-bottom">Let’s <span>work well(ness)</span> together.</span>',
+        //     caption_top_x: '0',
+        //     caption_top_y: '100',
+        //     caption_top_speed: '1200',
+        //     caption_top_start: '800',
+        //     caption_top_easing: 'easeOutBack',
+
+        //     caption_mid: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.',
+        //     caption_mid_x: '0',
+        //     caption_mid_y: '300',
+        //     caption_mid_speed: '900',
+        //     caption_mid_start: '1900',
+        //     caption_mid_easing: 'easeOutBack',
+
+        //     caption_bot: '<span><a href="#" title="LET’S GET STARTED">LET’S GET STARTED <svg><use xlink:href="#icon-arrow-right"></use></svg></a></span>',
+        //     caption_bot_x: '70',
+        //     caption_bot_y: '480',
+        //     caption_bot_speed: '300',
+        //     caption_bot_start: '1000',
+        //     caption_bot_easing: 'easeOutExpo'
+        // });
+
+    if (jQuery.fn.cssOriginal!=undefined)
+        jQuery.fn.css = jQuery.fn.cssOriginal;
+        jQuery('.revolution-banner').revolution(
+            {
+                delay:9000,
+                startwidth:1880,
+                startheight:632,
+
+                hideThumbs:200,
+
+                thumbWidth:100,                            // Thumb With and Height and Amount (only if navigation Tyope set to thumb !)
+                thumbHeight:50,
+                thumbAmount:4,
+
+                navigationType:"both",                    //bullet, thumb, none, both        (No Thumbs In FullWidth Version !)
+                navigationArrows:"nexttobullets",        //nexttobullets, verticalcentered, none
+                navigationStyle:"round",                //round,square,navbar
+
+                touchenabled:"on",                        // Enable Swipe Function : on/off
+                onHoverStop:"on",                        // Stop Banner Timet at Hover on Slide on/off
+
+                navOffsetHorizontal:0,
+                navOffsetVertical:20,
+
+                shadow:1,                                //0 = no Shadow, 1,2,3 = 3 Different Art of Shadows  (No Shadow in Fullwidth Version !)
+                fullWidth:"off"                            // Turns On or Off the Fullwidth Image Centering in FullWidth Modus
+
+            });
+        });
+</script>

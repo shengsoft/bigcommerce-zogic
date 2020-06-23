@@ -1,0 +1,12 @@
+{{#if children}}
+<a class="navPages-action has-subMenu" href="{{url}}">{{name}} <span>></span></a>
+    <ul class="navPage-subMenu-list-1">
+        {{#each children}}
+            <li class="navPage-subMenu-item">
+                <a class="navPage-subMenu-action navPages-action has-subMenu" href="{{url}}">{{name}}</a>                
+            </li>
+        {{/each}}
+    </ul>
+{{else}}
+<a class="navPages-action" href="{{url}}">{{name}}</a>
+{{/if}}

@@ -1,0 +1,63 @@
+---
+products:
+    new:
+        limit: {{theme_settings.homepage_new_products_count}}
+    top_sellers:
+         limit: {{theme_settings.side_top_products_count}}
+category:
+    shop_by_price: true
+    products:
+        limit: {{theme_settings.categorypage_products_per_page}}
+---
+{{inject "categoryProductsPerPage" theme_settings.categorypage_products_per_page}}
+{{#partial "head"}}
+    {{#if pagination.category.previous}}
+        <link rel="prev" href="{{pagination.category.previous}}">
+    {{/if}}
+    {{#if pagination.category.next}}
+        <link rel="next" href="{{pagination.category.next}}">
+    {{/if}}
+{{/partial}}
+
+{{#partial "page"}}
+{{> components/common/breadcrumbs breadcrumbs=breadcrumbs}}
+<div class="container">
+    <!-- TITLE SUPRESSED -- <h1 class="TitleHeading">{{{category.name}}}</h1>-->
+    {{#if category.description}}
+        <div class="category-description">
+            {{{category.description}}}
+        </div>
+    {{/if}}
+
+    <div class="page">
+        <aside class="page-sidebar col-sm-3" id="faceted-search-container">
+            {{> components/halothemes/sidebar-toggle-mobile}}
+            {{> components/category/sidebar}}
+        </aside>
+
+        <main class="page-content col-sm-9" id="product-listing-container">
+
+            {{#if category.image}}
+                <div class="category-image"><img src="{{getImage category.image 'zoom_size'}}"></div>
+            {{/if}}
+
+           <div id="searchspring-content">
+                <div class="productBlockPage sidebarBlock">
+
+                    {{{snippet 'categories'}}}
+                    {{#if category.products}}
+                        {{> components/category/product-listing}}
+                    {{else}}
+                        <div class="alert alert-warning text-center"><p>{{lang 'categories.no_products'}}</p></div>
+                    {{/if}}
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+{{/partial}}
+{{> layout/base}}
+<script type="text/javascript" charset="utf-8">
+    console.warn(`Pixel should be running...`);
+    fbq('track', 'ViewCategory');
+</script>

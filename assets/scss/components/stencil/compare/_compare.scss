@@ -1,0 +1,160 @@
+// =============================================================================
+// COMPARE (CSS)
+// =============================================================================
+
+
+// Compare table layout
+// -----------------------------------------------------------------------------
+//
+// 1. Foundation Magellan plugin.
+//
+// -----------------------------------------------------------------------------
+.product-list{
+    margin:0 -15px;
+    overflow:hidden;
+    list-style:none;
+    .product-card{
+        width:20%;
+        display:inline-block;
+        padding:0 15px 30px;
+        margin:0 -1.5px;
+        vertical-align:top;
+        text-align: center;
+        @media (max-width: 991px) {
+            width: 25%;
+        }
+        @media (max-width: 767px) {
+            width: 33.33%;
+        }
+        @media (max-width: 580px) {
+            width: 50%;
+        }
+        @media (max-width: 380px) {
+           padding:0 10px 30px;
+           margin:0 -1.0px;
+        }
+        .card{
+            margin-bottom:20px;
+            .compareTable-removeProduct{                
+                height: spacing("single") + spacing("base");
+                position: absolute;
+                right:0;
+                top:0;
+                transition: background-color 0.15s ease;
+                width: spacing("single") + spacing("base");
+                text-align: center;
+                z-index:10;
+                .icon {
+                    fill: stencilColor("icon-color");
+                    height: spacing("single");
+                    margin-top: spacing("third");
+                    width: spacing("single");
+                }
+                &:hover{
+                    .icon{
+                        fill: stencilColor('color-other-textLink--hover');
+                    }
+                }
+            }
+        }
+        .card-body{
+            text-align:center;
+        }
+        .card-text{
+            margin-bottom: 10px;
+            overflow: hidden;
+            min-height: 18px;
+            a{
+                color:#a5a5a5;
+            }
+        }
+        .card-title{
+            margin-top: 0px;
+            margin-bottom: 7px;
+            font-size: fontSize("base");
+            font-family: stencilFontFamily('card-title-font');
+            font-weight: 400;
+            line-height: 20px;
+            color: stencilColor('card-title-color');
+            letter-spacing: 0;
+            &:hover a {
+                color: stencilColor('card-title-color-hover');
+                text-decoration: none;
+            }
+        }
+        .prod-brand{
+            margin-bottom: 7px;
+            text-transform:uppercase;
+            font-weight:600;
+            font-family: stencilFontFamily("body-secondary-font"), Arial, Helvetica, sans-serif;
+            color:stencilColor('brand-name-color');
+            min-height:20px;
+            & a {
+                color:stencilColor('brand-name-color');
+            }
+        }
+        .prod-price {
+            color: stencilColor('basic-price-color');
+            font-family: stencilFontFamily('card-title-font');
+            font-size: $fontSize-base;
+            line-height: 25px;
+            margin-bottom: 10px;
+            font-weight: 400;
+            font-size: 16px;
+            & .price--rrp {
+                color: stencilColor('retail-price-color');
+                margin-right: 8px;
+                font-size: 14px;
+                font-style: italic;
+                letter-spacing: 0;
+                & ~ .price--withoutTax {
+                    color: stencilColor('sale-price-color');
+                    font-weight: 400;
+                    letter-spacing: 0;
+                }
+            }
+            p[translate] {
+                color: $anchor-font-color-hover;
+                font-size: $fontSize-base;
+                margin-bottom: 10px;
+            }
+        }
+        .prod-summary{
+            display:none;
+        }
+        .star-rating,
+        .availability{
+            margin-bottom:10px;
+        }
+        & > .btn{
+            display:block;
+            margin:10px 0 12px;
+            min-height: 40px;
+            line-height: 38px;
+            padding: 0 25px;
+            @media (max-width: 380px) {
+                padding: 0 10px;
+            }
+        }
+        & ul {
+            & li {
+                list-style: none;
+            }
+        }
+    }
+    &.product-list-2{
+        .product-card{
+            width:50%;
+        }
+    }
+    &.product-list-3{
+        .product-card{
+            width:33%;
+        }
+    }
+    &.product-list-4{
+        .product-card{
+            width:25%;
+        }
+    }
+}

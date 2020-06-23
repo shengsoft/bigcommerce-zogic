@@ -1,0 +1,259 @@
+// =============================================================================
+// PAGINATION (CSS)
+// =============================================================================
+// Pagination list items
+// -----------------------------------------------------------------------------
+//
+// 1. Centred list via inline-block. Font-size: 0; to remove white-space.
+// 2. Specificity overrides for Foundation's inadequate selectors.
+//
+// -----------------------------------------------------------------------------
+.product-pagination {
+    display: -webkit-box;
+    /* OLD - iOS 6-, Safari 3.1-6 */
+    display: -moz-box;
+    /* OLD - Firefox 19- (buggy but mostly works) */
+    display: -ms-flexbox;
+    /* TWEENER - IE 10 */
+    display: -webkit-flex;
+    /* NEW - Chrome */
+    display: flex;
+    /* NEW, Spec - Opera 12.1, Firefox 20+ */
+    align-items: center;
+    &.top .pagination {
+        width: calc(100% - 75px);
+        text-align: center;
+        margin-top: 2px;
+        @media (max-width: 1200px) {
+            padding-top: 10px;
+            width: 100%;
+        }
+        @media (max-width: 767px){
+            width: 100%;
+            clear: both;
+        }
+        @media (max-width: 550px){
+            padding-right: 10px;
+            padding-top: 0;
+        }
+       
+    }
+    &.bottom {
+        @media (max-width: 600px) {
+            flex-wrap: wrap;
+            display: block;
+            padding-right: 25px;
+            & .pagination-list {
+                margin-top: 15px;
+            }
+
+        }
+        padding: 18px 2px 18px 25px;
+        border-top: 1px solid stencilColor('border-base-color');
+        margin-top: -1px;
+        // @media (min-width: 768px) and (max-width: 991px) {
+        //     flex-wrap: wrap;
+        //     display: block;
+        //     margin-bottom: 15px;
+        // }
+    }
+    &.top {  
+        @media (max-width: 1200px) {
+            flex-wrap: wrap;
+            display: block;
+        }
+        @media (max-width: 550px) {
+           width: 100%;
+            float: left;
+        }
+        position: relative;
+        background: #ffffff;
+        padding: 0 2px 0 12px;
+        border-bottom: 1px solid stencilColor('border-base-color');
+    }
+    &.bottom .pagination {
+        width: calc(100% - 207px);
+        text-align: center;
+        @media (max-width: 600px) {
+            width: 100%;
+            text-align: center;
+            .pagination-item{
+                // margin-bottom: 15px;
+            }
+        }
+        // @media (min-width: 768px) and (max-width: 991px) {
+        //     width: 100%;
+        //     text-align: center;
+        //     .pagination-item{
+        //         // margin-bottom: 15px;
+        //     }
+        // }
+    }
+    
+    
+}
+
+.page-type-account_recentitems {
+    & .product-pagination.bottom {
+        justify-content: flex-end;
+    }
+}
+.titlePagination {
+    font-family: stencilFontFamily('body-font'), Arial, Helvetica, sans-serif;
+    font-size: 12px;
+    text-transform: uppercase;
+    color: $anchor-font-color;
+    font-weight: 700;
+    padding: 0;
+    padding: 12px 20px;
+    margin-right: 3px;
+    border: 1px solid #d7d7d7;
+    border-radius: 3px;
+    &:hover {
+        text-decoration: none;
+        color: $anchor-font-color;
+    }
+    @media (max-width: 480px){
+        display: block;
+        margin-bottom: 35px;
+        padding: 9px 20px;
+    }
+}
+.pagination-list {
+    @include clearfix;
+    font-size: 0; // 1
+    margin-bottom: 0;
+    text-align: right; 
+    @media (max-width: 1199px){
+        margin-top: 6px;     
+    }
+
+    .pagination-item {
+        // 2
+        display: inline-block;
+        margin: 0;
+        cursor: default;        
+        @media (max-width: 767px) {
+            margin-bottom: 15px;
+        }
+        // @media (min-width: 768px) and (max-width: 991px) {
+        //     margin-bottom: 15px;
+        // }
+        & a {
+            font-family: stencilFontFamily('body-font'), Arial, Helvetica, sans-serif;
+            font-size: 12px;
+            text-transform: uppercase;
+            color: stencilColor('color-textBase');
+            min-width: 26px;
+            font-weight: 700;
+            border-radius: 0;
+            min-width: 16px;
+            padding: 0;
+            padding: 2px 8px;
+            border-radius: 3px;
+            margin-right: 10px;
+            border: 1px solid stencilColor('border-base-color');
+            @media (max-width: 767px){
+                margin-right: 5px;
+            }
+            &:hover {
+                color: stencilColor('color-textBase');
+                border: 1px solid #d7d7d7;
+            }
+        }
+        &.pagination-item--previous a,
+        &.pagination-item--next a {
+            color: $anchor-font-color;
+            padding: 2px 8px;
+            color: stencilColor('color-textBase');
+            border: 1px solid transparent;
+            width: 28px;
+            height: 26px;
+            position: relative;
+            z-index: 1;
+            &:hover {
+                color: $anchor-font-color;
+               border: 1px solid stencilColor('border-base-color');
+            }
+            & svg {
+                width: 13px;
+                height: 11px;
+                color: stencilColor('color-textBase');
+                margin-bottom: -1px;
+            }
+        }
+        &.pagination-item--previous a {
+            & svg {
+                transform: rotate(180deg);
+                -moz-transform: rotate(180deg);
+                -webkit-transform: rotate(180deg);
+                -ms-transform: rotate(180deg);
+                -o-transform: rotate(180deg);
+            }
+        }
+
+        &.pagination-item--current a {
+            color: stencilColor('color-white');
+            border: 1px solid stencilColor('color-textLinkSecondary');
+            background: stencilColor('color-textLinkSecondary');
+        }
+    }
+}
+
+.compare-link {
+    align-self: stretch;
+    display: -webkit-box;
+    /* OLD - iOS 6-, Safari 3.1-6 */
+    display: -moz-box;
+    /* OLD - Firefox 19- (buggy but mostly works) */
+    display: -ms-flexbox;
+    /* TWEENER - IE 10 */
+    display: -webkit-flex;
+    /* NEW - Chrome */
+    display: flex;
+    /* NEW, Spec - Opera 12.1, Firefox 20+ */
+    align-items: center;
+    justify-content: flex-end;
+    min-width: 207px;
+    @media (max-width: 600px) {
+        width: 100%;
+        display: block;
+        border-width: 1px 0 0 0;
+    }
+
+    & a {
+        display: flex;
+        align-items: center;
+        padding: 0;
+        width: 100%;
+        font-size: 12px;
+        letter-spacing: 0;
+        padding: 0 15px;
+        & .countPill {
+            display: none;
+        }
+        &:hover {
+            text-decoration: none;
+        }
+    }
+    &.link-show {
+        & .countPill {
+            display: inline-block;
+        }
+    }
+}
+
+.compare-link .countPill {
+    display: inline-block;
+    min-width: 24px;
+    margin-left: 10px;
+    padding: 0 4px;
+    text-align: center;
+    border-radius: 50%;
+    background-color: stencilColor('item-count-circle-backgroundColor');
+    color: stencilColor('item-count-circle-color');
+    line-height: 24px;
+    font-size: 11px;
+    font-weight: 400;
+    font-family: "Roboto", Arial, Helvetica, sans-serif;
+}

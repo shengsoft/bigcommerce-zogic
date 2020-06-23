@@ -1,0 +1,1 @@
+{"components/common/alert-error-out-of-stock":"<div class=\"btn-OutOfStock btn btn-out-of-stock\">\r\n    <i class=\"icon-cart\"><svg><use xlink:href=\"#shopping-bag-add\"></use></svg></i>\r\n    <span>{{{this}}}</span>\r\n</div>\r\n"}

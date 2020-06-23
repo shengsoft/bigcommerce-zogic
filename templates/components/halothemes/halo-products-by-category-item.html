@@ -1,0 +1,5 @@
+{{#each category.products}}
+<div class="prod-item wow fadeIn" data-wow-delay="{{@index}}ms">
+   {{>components/products/card show_rating=../settings.show_product_rating theme_settings=../theme_settings customer=../customer}}
+</div>
+{{/each}}

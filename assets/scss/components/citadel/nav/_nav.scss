@@ -1,0 +1,260 @@
+// =============================================================================
+// NAV (CSS)
+// =============================================================================
+// Citadel inline messages
+// -----------------------------------------------------------------------------
+//
+// 1. Remove the margin-left we add to default lists.
+//
+// -----------------------------------------------------------------------------
+.navList,
+.navBar {
+    margin-left: 0; // 1
+}
+
+.navList-action,
+.navBar-action {
+    text-decoration: none;
+    font-size: fontSize("base");
+}
+
+.navList-action.is-active {
+    font-weight: $navList-action-fontWeight--active;
+}
+
+// NavList action checkbox
+// -----------------------------------------------------------------------------
+//
+// Purpose: Display a checkbox next to an actionable link, without actually using
+// a checkbox element.
+//
+// 1. Position checkbox so it is vertically centered
+//
+// -----------------------------------------------------------------------------
+.navList-action--checkbox {
+    @include checkRadioBase();
+    @include checkBox-base();
+    &:before,
+    &:after {
+        top: 50%; // 1
+    }
+    &:before {
+        margin-top: -$checkRadio-outerSize / 2;
+    }
+    &:after {
+        margin-top: -$checkRadio-outerSize / 2 + remCalc(1);
+    }
+    &:focus {
+        @include checkRadioBase--focus();
+    }
+    &.is-disabled {
+        @include checkRadioBase--disabled();
+    }
+    &.is-checked,
+    &.is-selected {
+        @include checkRadioBase--checked();
+    }
+}
+
+// NavList action close
+// -----------------------------------------------------------------------------
+//
+.navList-action-close {
+    background: $navList-action-close-background;
+    border-radius: $navList-action-close-borderRadius;
+    display: inline-block;
+    float: right;
+    line-height: 0;
+    opacity: 0;
+    padding: $navList-action-close-padding;
+    transition: $navList-action-close-transition;
+    visibility: hidden;
+    .icon {
+        @include square($navList-action-close-iconSize);
+        fill: stencilColor("color-textLink");
+    }
+    .navList-action.is-selected:hover & {
+        opacity: 1;
+        visibility: visible;
+    }
+}
+
+// Page Subnavigation
+// -----------------------------------------------------------------------------
+nav.navBar--sub {
+    display: block;
+}
+nav.navBar--sub ~ main {
+    & h3 {
+        font-size: 14px;
+        letter-spacing: 0;
+        font-weight: 700;
+        margin-bottom: 1.5rem;
+        margin-top: 0;
+        text-transform: uppercase;
+    }
+    & h2 {
+        font-size: 14px;
+        letter-spacing: 0;
+        font-weight: 700;
+        margin-bottom: 1.5rem;
+        margin-top: 0;
+        text-transform: uppercase;
+    }
+}
+
+@media (max-width: 991px) {
+    nav.navBar--sub ul.navBar-section.account-navigation {
+        display: flex;
+        flex-wrap: wrap;
+        & li.navBar-item {
+            width: 100%;
+            margin-left: 0;
+            margin-bottom: -1px;
+            &:last-child {
+                margin-bottom: 0;
+            }
+        }
+    }
+}
+
+@media (max-width: 991px) {
+    nav.navBar--sub.navBar--account ul.navBar-section {
+        display: flex;
+        flex-wrap: wrap;
+        & li.navBar-item {
+            width: 100%;
+            margin-bottom: -1px;
+            &:nth-child(4) {
+                margin-left: 0;
+            }
+            &:nth-child(4),
+            &:nth-child(5),
+            &:nth-child(6) {
+                margin-bottom: 0;
+            }
+            @media (max-width: 767px) {
+                width: 100%;
+                margin-left: 0;
+                &:nth-child(4),
+                &:nth-child(5) {
+                    margin-bottom: -1px;
+                }
+            }
+        }
+    }
+}
+
+// ul.navBar-section {
+//     position: relative;
+//     overflow: hidden;
+//     margin-bottom: 38px;
+//     margin-top: 0;
+//     border: 0;
+//     width: 100%;
+//     &:after {
+//         position: absolute;
+//         bottom: -1px;
+//         width: 100%;
+//         z-index: 1;
+//         height: 5px;
+//         content: '';
+//         background: #000;
+//         @media (max-width: 1200px) {
+//             position: static;
+//         }
+//     }
+//     & li.navBar-item {
+//         position: relative;
+//         z-index: 1;
+//         display: table;
+//         float: left;
+//         height: 53px;
+//         overflow: hidden;
+//         margin-left: -1px;
+//         border: 1px solid #d0d0d0;
+//         @media (max-width: 1200px) {
+//             width: 100%;
+//             margin-left: 0;
+//             margin-bottom: -1px;
+//         }
+//         @media (min-width: 1200px){
+//             &:first-child {
+//                 margin-left: 0;
+//                 border-top-left-radius: 4px;
+//             }
+//             &:last-child {
+//                 border-top-right-radius: 4px;
+//             }
+//         }
+        
+//         & a {
+//             font-size: 13px;
+//             font-weight: 700;
+//             letter-spacing: 0;
+//             display: block;
+//             display: table-cell;
+//             padding: 0 25px;
+//             -webkit-transition: background .3s ease 0s;
+//             -moz-transition: background .3s ease 0s;
+//             -ms-transition: background .3s ease 0s;
+//             -o-transition: background .3s ease 0s;
+//             transition: background .3s ease 0s;
+//             vertical-align: middle;
+//             text-transform: uppercase;
+//             color: #000;
+//             background: #fafafa;
+//             font-family: stencilFontFamily('body-secondary-font'), Arial, Helvetica, sans-serif;
+//             text-decoration: none !important;
+//             &:hover{
+//                 border: 0;
+//             }
+//             @media (max-width: 480px) {
+//                 font-size: 12px;
+//                 padding: 0 15px;
+//                 letter-spacing: 0;
+//             }
+//             &:focus {
+//                 outline: none;
+//             }
+//         }
+//         &.is-active {
+//             border: 1px solid #000;
+//             border-bottom: 0;
+//             background: #fff;
+//             position: relative;
+//             z-index: 2;
+//             @media (max-width: 1200px) {
+//                 border: 0;
+//             }
+//         }
+//         &.is-active a {
+//             border-bottom-color: #fff;
+//             background: #000;
+//             color: #fff;
+//             @media (max-width: 1200px) {
+//                 background: #000;
+//                 border-bottom-color: #000;
+//             }
+//         }
+//         &:hover{
+//             border: 1px solid #000;
+//             border-bottom: 0;
+//             background: #fff;
+//             position: relative;
+//             z-index: 2;
+//             @media (max-width: 1200px) {
+//                 border: 0;
+//             }
+//             a {
+//                 border-bottom-color: #fff;
+//                 background: #000;
+//                 color: #fff;
+//                 @media (max-width: 1200px) {
+//                     background: #000;
+//                     border-bottom-color: #000;
+//                 }
+//             }
+//         }
+//     }
+// }

@@ -1,0 +1,21 @@
+{{#partial "page"}}
+
+<div class="container">
+
+    <main class="page">
+        
+        <div class="page-content page-content--centered">
+            {{#replace '%%Syndicate%%' page.content}}
+                {{> components/page/rss_feed}}
+            {{else}}
+                <p>{{{page.content}}}</p>
+            {{/replace}}
+        </div>
+
+
+    </main>
+</div>
+
+{{/partial}}
+
+{{> layout/base}}

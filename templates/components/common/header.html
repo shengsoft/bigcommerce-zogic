@@ -1,0 +1,133 @@
+<div class="header-top-middle hidden-md hidden-lg mobile">
+    <div class="promos">
+        <div class="promo-img"></div>
+        <div class="promo-text"></div>
+    </div>
+</div>
+
+<header class="header" role="banner">
+    <div class="header-top hidden-sm hidden-xs">
+        <div class="container">
+            <div class="row">
+                <div class="header-top-left col-md-4 col-lg-3">
+                   <div class="navPages-container" id="menu" data-menu>
+                        {{> components/common/navigation-menu}}
+                   </div>
+                </div>
+                <div class="header-top-middle col-md-4 col-lg-6">
+                    <div class="promos">
+                        <div class="promo-img"></div>
+                        <div class="promo-text"></div>
+                    </div>
+                </div>
+                <div class="header-top-right col-md-4 col-lg-3">
+                    {{> components/common/navigation}}
+            </div>
+        </div>
+    </div>
+</div>
+        
+    <div class="header-middle">
+        <div class="container">
+        <div id="st-trigger-effects" class="visible-sm visible-xs">
+            <a data-effect="st-effect-1" href="javascript:void(0);">&nbsp;<svg><use xlink:href="#icon-trigger-bars" /></svg></a>
+            <a class="close-canvas" href="javascript:void(0);"><svg><use xlink:href="#icon-close"></use></svg></a>
+        </div>
+        {{#if template_file '===' 'pages/home'}}
+        <h1 class="header-logo">
+        {{> components/common/store-logo}}
+        </h1> {{else}}
+        <div class="header-logo">
+            {{> components/common/store-logo}}
+        </div>
+        {{/if}}
+        <div class="sticky_logo">
+            <a href="{{urls.home}}" title="{{settings.store_logo.title}}"><img src="" alt=""></a>
+        </div>
+        <div id="quickSearch">
+            {{> components/common/quick-search}}
+        </div>
+        <div class="header-middle-right">
+            {{#if settings.phone_number}}
+            <div id="need-help-phone">{{> components/halothemes/header-phone-number}}</div>
+            {{/if}}
+                <ul class="login {{#if customer}}logged-in{{/if}}">
+                        {{#if customer}}
+                    <li id="accountDropdown" class="hidden-lg hidden-md">
+                        <a class="navUser-action has-dropdown" href="#" data-dropdown="accountSelection" aria-controls="accountSelection" aria-expanded="false"><span>{{lang 'common.my_account'}}</span><i class="fa fa-angle-down"></i></a>
+                        <ul class="dropdown-menu" id="accountSelection" data-dropdown-content aria-hidden="true" tabindex="-1">
+                            <div class="triangle-with-shadow"></div>
+                            {{#if settings.account_creation_enabled}}
+                            <li class="login-register">
+                                {{#if customer}}
+                                    <div class="logged-in">{{lang 'Welcome back,'}} <strong>{{customer.name}}. </strong></div>
+                                {{/if}}
+                            </li>
+                            {{/if}}
+                            <li><a href="{{urls.account.orders.all}}">{{lang 'account.nav.orders'}}</a></li>
+                            {{#if settings.returns_enabled}}
+                            <li><a href="{{urls.account.returns}}">{{lang 'account.nav.returns'}}</a></li>
+                            {{/if}}
+                            <li><a href="{{urls.account.inbox}}">{{lang 'account.mobile_nav.messages'}}</a></li>
+                            <li><a href="{{urls.account.addresses}}">{{lang 'account.nav.addresses'}}</a></li>
+                            <li><a href="{{urls.account.wishlists.all}}">{{lang 'account.mobile_nav.wishlists'}}</a></li>
+                            <li><a href="{{urls.account.recent_items}}">{{lang 'account.nav.recently_viewed'}}</a></li>
+                            <li><a href="{{urls.account.details}}">{{lang 'account.nav.settings'}}</a></li>
+                            <li><a href="{{urls.auth.logout}}">{{lang 'common.logout'}}</a></li>
+                        </ul>
+                    </li>
+                    
+                    {{else}}
+                        {{#if settings.account_creation_enabled}}
+                            {{#if customer}}
+                                <li class="logged-in hidden-lg hidden-md">{{lang 'Welcome back,'}} <strong>{{customer.name}}. </strong><a href="{{urls.auth.logout}}"><span>{{lang 'common.logout'}}</span></a></li>
+                            {{else}}
+                                <li class="log-in hidden-lg hidden-md">
+                                    <a href="/login.php"><svg style="width: 16px; height: 18px;"><use xlink:href="#icon-account"></use></svg> <span>{{lang 'common.login'}}</span></a>
+                                    <!-- {{> components/halothemes/halo-dropdown-login}} -->
+                                </li>
+                            {{/if}}
+                        {{/if}}
+
+                    {{/if}}
+            </ul>
+            <div id="top-cart" class="top-cart">
+                <a data-cart-preview href="javascript:void(0);">
+                    <span class="cart-text hidden-sm hidden-xs">
+                    <svg>
+                        <use xlink:href="#shopping-bag-add"></use>
+                    </svg>
+                    <span class="cart-name">
+                    {{lang 'common.cart'}}</span><span class="countPill{{#if cart.items}} countPill--positive{{/if}} cart-quantity">{{#if cart.items}}{{cart.quantity}}{{else}}0{{/if}}</span></span>
+                    <span class="cart-num hidden-lg hidden-md">
+                    <svg>
+                        <use xlink:href="#shopping-bag-add"></use>
+                    </svg>
+                    <strong><span class="countPill{{#if cart.items}} countPill--positive{{/if}} cart-quantity">{{#if cart.items}}{{cart.quantity}}{{else}}0{{/if}}</span></strong> </span>
+                </a>
+                <div id="cart-preview-dropdown">
+                    <div class="triangle-with-shadow"></div>
+                    <div class="cart-preview-inner">
+                        {{> components/common/cart-preview}}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+    <button type="button" class="mobile-search-toggle hide">
+        <svg>
+            <use xlink:href="#icon-close"></use>
+        </svg>
+        <svg>
+            <use xlink:href="#icon-search"></use>
+        </svg>
+    </button>
+    <div id="quick-menu">
+        <div class="container">
+            {{> components/common/navigation-quick-menu}}
+        </div>
+    </div>
+</header>
+

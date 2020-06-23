@@ -1,0 +1,45 @@
+<!-- BEGIN ASK AN EXPERT MODAL -->
+<div id="halo-request-a-quote-form" class="modal" data-reveal>
+   <a href="#" class="modal-close" aria-label="{{lang 'common.close'}}" role="button">
+      <span aria-hidden="true">&#215;</span>
+   </a>
+   <div class="modal-content">
+      <div class="modal-header">
+         <h2 class="modal-header-title">Request a Quote</h2>
+      </div>
+      <div class="modal-body">
+         <div id="contact_results"></div>
+         <div class="form-inner">
+                           <div class="form-raq">
+                              <!--[if lte IE 8]>
+                              <script charset="utf-8" type="text/javascript" src="//js.hsforms.net/forms/v2-legacy.js"></script>
+                              <![endif]-->
+                              <script charset="utf-8" type="text/javascript" src="https://js.hsforms.net/forms/v2.js"></script>
+                              <script type="text/javascript">// <![CDATA[
+                              hbspt.forms.create({ 
+                                portalId: '477652',
+                                formId: 'f6a6cd35-05a1-4f22-89f9-2415d2aecde6',
+                                target: '.form-raq'
+                              });
+                              // ]]></script>
+                            </div>
+            
+         </div>
+      </div>
+   </div>
+</div>
+<!-- END ASK AN EXPERT MODAL -->
+
+<script>
+   $(document).ready(function() {
+     $('.prod-raq,.raq-btn-close').on('click', function(event){
+         event.preventDefault();
+         var raq = $('body');
+         if(! raq.hasClass("form-raq-show")){
+           raq.addClass("form-raq-show");
+         } else {
+           raq.removeClass("form-raq-show");
+         }
+     });
+   });
+ </script>

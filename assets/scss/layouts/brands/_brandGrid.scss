@@ -1,0 +1,85 @@
+// =============================================================================
+// BRAND GRID (CSS)
+// =============================================================================
+
+
+// Brand grid view
+// -----------------------------------------------------------------------------
+//
+// 1. Re-set the font-size, as we're reducing it to 0 in the .brandGrid class.
+//
+// -----------------------------------------------------------------------------
+img.brand-logo-heading{
+    border: 1px solid #d0d0d0;
+    margin-bottom: 20px;
+    padding: 10px;
+    background: #ffffff;
+}
+.brandGrid {
+
+    @include u-listBullets("none");
+    @include grid-row($behavior: "nest");
+    font-size: 0; // 1
+    margin-bottom: spacing("single");
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    ms-flex-pack: center;
+    justify-content: center;
+    -ms-justify-content: center;
+    -webkit-justify-content: center;
+    flex-wrap: wrap;
+
+    .brand {
+        @include grid-column(6, $float: none);
+        display: inline-block;
+        font-size: fontSize("base"); // 1
+        vertical-align: top;
+        float: left;
+        @include breakpoint("small") {
+            width: grid-calc(4, $total-columns);
+        }
+
+        @media (min-width: 992px) {
+            width: 19.95%;
+        }
+        @media (max-width: 991px) {
+            width: 25%;
+        }
+        @media (max-width: 767px) {
+            width: 33.30%;
+        }
+        @media (max-width: 480px) {
+            width: 49.95%;
+        }
+        figure {
+            border: 1px solid #d0d0d0;
+            
+        }
+        // scss-lint:disable SelectorDepth, NestingDepth
+        .card-title {
+            text-align: center;
+            font-size: 13px;;
+            letter-spacing: 0;
+            font-weight: 400;
+            font-family: stencilFontFamily('card-title-font'), Arial, Helvetica, sans-serif;
+        }
+        .card-image{
+            width: 100%;
+        }
+        .card-body{
+            padding-bottom: 0.75rem;
+        }
+        .card {
+            background-color: #fff;
+            -webkit-border-radius: 3px;
+            -moz-border-radius: 3px;
+            border-radius: 3px;
+            overflow: hidden;
+            -webkit-box-shadow: 0 1px 5px rgba(0,0,0,.06);
+            -moz-box-shadow: 0 1px 5px rgba(0,0,0,.06);
+            box-shadow: 0 1px 5px rgba(0,0,0,.06);
+            border-bottom: 1px solid #dcdcdc;
+        }
+    }
+}

@@ -1,0 +1,38 @@
+{{#if customer}}
+{{else}}
+<!-- BEGIN SIGN IN POPUP -->
+<div id="halo-popup-login" class="modal" data-reveal>
+    <a href="#" class="modal-close" aria-label="{{lang 'common.close'}}" role="button">
+        <span aria-hidden="true">&#215;</span>
+    </a>
+    <div class="modal-body">
+        <div class="text-left">
+            <h3>{{lang 'common.login'}}</h3>
+            <form class="login-popup" id="loginForm" action="{{settings.secure_base_url}}/login.php?action=check_login" method="post" name="mainLoginForm">
+               <fieldset class="form-fieldset">
+                    <div class="form-field">
+                        <input class="form-input" name="login_email" id="login_email" type="email" placeholder="Email address">
+                    </div>
+                    <div class="form-field">
+                        <input class="form-input" id="login_pass" type="password" name="login_pass" placeholder="Password">
+                    </div>
+                    <p style="text-align: center;display: none;" id="popup-loading"><img src="{{cdn '/assets/img/vendor/jstree/throbber.gif'}}"></p>
+                    <div class="form-actions">
+                        <input type="submit" class="btn btn-primary" value="{{lang 'login.submit_value' }}">
+                        <a class="forgot-password" href="{{urls.auth.forgot_password}}">{{lang 'login.forgot_password' }}</a>
+                    </div>
+                </fieldset>
+            </form>
+            <div class="separated-form">
+                <span>OR</span>
+                <a href="{{urls.auth.create_account}}" class="btn btn-oranges"><span>Create A New Account</span></a>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- END SIGN IN POPUP -->
+
+<script>
+    window.HaloPopupLogin();
+</script>
+{{/if}}

@@ -1,0 +1,272 @@
+// =============================================================================
+// PREVIEW CART (CSS)
+// =============================================================================
+//
+// 1. Override server-generated inline-css
+//
+// -----------------------------------------------------------------------------
+#previewModal {
+    .modal-content {
+        position: relative;
+    }
+    @media (min-width: 767px) {
+        &:before {
+            content: '';
+            position: absolute;
+            right: 0;
+            top: 0;
+            width: 300px;
+            height: 100%;
+            background-color: #f5f5f5;
+            z-index: 1;
+        }
+        .modal-body {
+            padding: 0;
+        }
+    }
+    @media (min-width: 768px) and (max-width: 991px) {
+        max-width: 768px;
+    }
+}
+
+.previewCart {
+    #mayAlsoLike {
+        width: calc(100% - 285px);
+        float: left;
+        @media (max-width: 991px) {
+            display: block;
+        }
+        @media (max-width: 767px) {
+            width: 100%;
+            display: block;
+            padding-left: 0;
+            padding-right: 0;
+        }
+        & .productCarousel {
+            padding: 30px 30px 60px 30px;
+            @media (max-width: 767px) {
+                padding: 0;
+            }
+        }
+        &>h3 {
+            font-family: $fontFamily-headings;
+            background: #ffffff;
+            padding-top: 0;
+            border-top: 1px solid #eaeaea;
+            padding: 35px 30px 17px;            
+            margin: 0 30px;
+            padding-left: 0;
+            font-size: 14px;
+            letter-spacing: 0;
+            text-align: left;
+            font-weight: bold;
+            color: #2f2f2f;
+            line-height: 1.1;
+            text-transform: uppercase;
+             @media (max-width: 767px) {
+               margin: 0;
+             }
+        }
+
+        & .owl-nav>div {
+            top: 25%;
+            background: #5b5b5b;
+            border: 0;
+            width: 32px;
+            height: 32px;
+            -webkit-border-radius: 3px;
+            -moz-border-radius: 3px;
+            border-radius: 3px;
+            &:hover {
+                background: #000000;
+            }
+            &.owl-prev {
+                right: 70px;
+                left: auto;
+                top: -27px;
+                @media (max-width: 767px){
+                  right: 40px;
+                }
+                &::before {
+                    content: '\f053';
+                    color: #fff;
+                    font-size: 14px;
+                }
+            }
+            &.owl-next {
+                right: 30px;
+                left: auto;
+                top: -27px;
+                @media (max-width: 767px){
+                  right: 0;
+                }
+                &::before {
+                    content: '\f054';
+                    color: #fff;
+                    font-size: 14px;
+                }
+            }
+        }
+    }
+    .productView {
+        @include grid-column(8);
+          display: flex;
+          margin: 0;
+          padding-bottom: 0;
+          padding-left: 30px;
+          padding-top: 30px !important;
+          @media (max-width: 991px) {
+             width: 60%;
+             display: block;
+          }
+          @media (max-width: 767px) {
+             width: 100%;
+             display: block;
+             padding-left: 0;
+             padding-right: 0;
+          }
+    }
+    .productView-image {
+        @include grid-column(5);
+        @media (max-width: 991px) {
+            float: none;
+            margin: 0 auto;
+            max-width: 210px;
+            padding-bottom: 15px;
+        }
+    }
+    .productView-image--cart {
+        align-self: flex-start;
+        margin: 0 auto;
+        width: auto;
+    }
+    .productView-details {
+        @include grid-column(7);
+        @media (max-width: 991px) {
+            padding-left: 0;
+            padding-right: 0;
+            width: 100%;
+            float: none;
+            margin: 0;
+        }
+    }
+    .productView-brand {
+        margin-bottom: 15px !important;
+        font-size: 11px !important;
+    }
+    .productView-title {
+        margin-top: 0;
+        font-size: 13px;
+        ;
+        font-family: stencilFontFamily('body-secondary-font'), Arial, Helvetica, sans-serif;
+        font-weight: 600;
+        margin: -4px 10px 14px 0;
+        letter-spacing: 0;
+        line-height: 22px;
+        color: #228dd6;
+        @media (max-width: 767px) {
+            margin-top: 0;
+            padding-top: 5px;
+        }
+    }
+    .productView-info {
+        padding-bottom: 7px;
+        & .productView-info-name {
+            margin-bottom: 0;
+            margin-right: 30px;
+            text-transform: capitalize;
+            font-weight: 600;
+            min-width: 100px;
+        }
+        & .productView-info-value {
+            margin-bottom: 0;
+            color: #646464;
+        }
+    }
+    .productView-price {
+        font-family: stencilFontFamily('card-title-font');
+        font-size: 13px;
+        margin-bottom: 20px;
+        & span {
+            font-weight: 600;
+            color: #8c8c8c;
+        }
+    }
+}
+
+.previewCartCheckout {
+     text-align: center;
+   position: relative;
+   z-index: 2;
+    @media (min-width: 768px) {
+        @include grid-column(4, $float: right);
+        padding: spacing("single");
+        max-width: 240px;
+        width: 100%;
+        margin: 0 30px 50px 30px;
+        padding: 0;
+    }
+    p[data-cart-quantity] {
+        margin-bottom: 15px;
+        padding-top: 15px;
+        color: #646464;
+        border-top: 1px solid #eaeaea;
+    }
+    .btn {
+        margin: 0;
+        width: 100%;
+        max-width: 100%;
+        height: 40px; // scss-lint:disable NestingDepth
+        +.btn,
+        +p {
+            margin-top: 15px;
+        }
+        &.btn-lg {
+            height: 48px;
+        }
+        @media (max-width: 360px) {
+            font-size: 11px;
+        }
+    }
+    
+    @media (max-width: 767px) {
+        margin-bottom: 15px;
+        position: relative;
+    }
+}
+
+.previewCartCheckout-price {
+    display: block;
+    font-size: 24px;
+    margin-top: 10px;
+    font-weight: bold;
+    text-align: center;
+}
+
+.previewCartCheckout-subtotal {
+    display: block;
+    margin-bottom: spacing("single");
+    margin-top: spacing("single");
+    padding-top: 15px;
+    border-top: 1px solid #eaeaea;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.previewCartCheckout-additionalCheckoutButtons {
+    p {
+        float: none !important;
+        margin: 15px 0 15px 0;
+        font-size: 12px;
+        font-weight: 400;
+        color: #646464;
+    }
+}
+
+.suggestiveCart {
+    display: none;
+    text-align: center;
+    @include breakpoint("medium") {
+        display: block;
+    }
+}

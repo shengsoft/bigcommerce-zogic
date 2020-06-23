@@ -1,0 +1,266 @@
+// =============================================================================
+// TABS (CSS)
+// =============================================================================
+//
+// Most of these styles deliberately reset Citadel's defaults for smaller
+// screens since the styles in Stencil for smaller screens are more persistent
+// across breakpoints.
+//
+// -----------------------------------------------------------------------------
+
+.tab {
+    border-top: $tab-active-border;
+    float: none;
+
+    @include breakpoint("medium") {
+        border-top-color: $tab-title-border-color;
+        float: left;
+    }
+
+    &.is-active {
+        border-left-color: $tab-title-border-color;
+        border-right-color: $tab-title-border-color;
+
+        @include breakpoint("small") {
+            margin-bottom: $tab-title-border-bottom-offset;
+        }
+
+        @include breakpoint("medium") {
+            border: $tab-active-border;
+            border-bottom: $tab-title-border;
+        }
+    }
+}
+
+.tab-title {
+    padding: spacing("half") + spacing("quarter") 0;
+    text-align: center;
+    text-decoration: $tab-title-text-decoration;
+
+    @include breakpoint("small") {
+        text-align: left;
+    }
+
+    @include breakpoint("medium") {
+        padding: spacing("half") spacing("single");
+    }
+}
+
+
+//
+// State for when tab-content has js generated of calculated content, like carousel
+//
+// Purpose: The content being display: none, means any js calculated dimensions
+// are incorrect as the elements inside the tab-content have no dimensions to grab.
+// Carousel is a prime example. It needs widths to calculate the layout and slides
+// -----------------------------------------------------------------------------
+
+.tab-content.has-jsContent {
+    display: block;
+    height: 0;
+    overflow: hidden;
+    padding: 0;
+    visibility: hidden;
+
+    &.is-active {
+        height: auto;
+        overflow: visible;
+        padding: $tabs-content-padding;
+        visibility: visible;
+    }
+}
+.tabs-contents{
+    padding: 0 30px;
+    overflow: hidden;
+    h1, h2, h3, h4, h5, h6 {
+        font-family: stencilFontFamily('body-secondary-font'), Arial, Helvetica, sans-serif;
+        font-weight: 600;
+        font-size: 13px;
+        text-transform: capitalize;
+        margin-bottom: 16px;
+    }
+    .tab-content{
+        >h1, >h2, >h3, >h4, >h5, >h6 {
+            position: relative;
+            padding-left: 16px;
+            &:before{
+                content: "\f054";
+                color: #ea8e0a;
+                position: absolute;
+                left: 0;
+                top: 2px;
+                font: normal normal normal 9px/1 FontAwesome;
+            }
+        }
+    }
+    img{
+        margin-top: 14px;
+        margin-bottom: 8px;
+    }
+    ul,ol {
+        margin-left: 33px;
+        li {
+            line-height: 30px;
+        }
+    }
+}
+ul.tabs {
+    position: relative;
+    width: 100%;
+    border: 0;
+    float: left;
+    &:after {
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+        z-index: 1;
+        height: 1px;
+        content: '';
+        background: #eaeaea;
+        @media (max-width: 1200px) {
+            position: static;
+        }
+    }
+    & li.tab {
+        position: relative;
+        z-index: 1;
+        display: table;
+        float: left;
+        height: 53px;
+        margin-left: -1px;
+        border: 1px solid stencilColor('border-base-color');
+        border-top: 0;
+        padding: 0 15px;
+        border-bottom: 0;
+        @media (max-width: 1199px) {
+            width: 100%;
+            margin-left: 0;
+            margin-bottom: -1px;
+            border: 0;
+            border-bottom: 1px solid stencilColor('border-base-color');
+        }
+        @media (min-width: 1200px){
+            &:first-child {
+                margin-left: 0;
+                border-left: 0;
+                &.is-active {
+                    &:before {                        
+                        content: '';
+                        left: 0;
+                        border-left: 1px solid stencilColor('main-color');
+                    }
+                    &:after {                        
+                        content: '';
+                        left: 0;
+                    }
+                }
+            }
+            &:last-child {
+               &.is-active {
+                    &:before {                        
+                        content: '';
+                        left: 0;
+                        border-left: 1px solid stencilColor('main-color');
+                    }
+                    &:after {                        
+                        content: '';
+                        left: 0;
+                    }
+                }
+            }
+        }
+        & a {
+            font-size: 13px;
+            font-weight: 700;
+            display: block;
+            display: table-cell;
+            padding: 0 15px;
+            line-height: 51px;
+            -webkit-transition: background .3s ease 0s;
+            -moz-transition: background .3s ease 0s;
+            -ms-transition: background .3s ease 0s;
+            -o-transition: background .3s ease 0s;
+            transition: background .3s ease 0s;
+            vertical-align: middle;
+            color: #000;
+            font-family: stencilFontFamily('body-secondary-font'), Arial, Helvetica, sans-serif;
+            text-decoration: none !important;
+            @media (max-width: 480px) {
+                font-size: 12px;
+                padding: 0 15px;
+                letter-spacing: 0;
+            }
+            &:focus {
+                outline: none;
+            }
+        }
+        &.is-active {
+            border-top: 0;
+            border-bottom: 0;
+            background: #fff;
+            position: relative;
+            z-index: 2;
+            @media (max-width: 1200px) {
+                border: 0 !important;
+                background: stencilColor('main-color');
+                &:before {
+                    left: 0px !important;
+                    width: 100% !important;
+                }
+            }
+            &:before {
+                position: absolute;
+                top: 0;
+                left: 0px;
+                width: 100%;
+                height: 3px;
+                z-index: 3;
+                content: '';
+                background: stencilColor('main-color');
+                border-left: 1px solid stencilColor('main-color');
+                border-right: 1px solid stencilColor('main-color')
+            }
+            @media (min-width: 1200px){
+                &:after {
+                    position: absolute;
+                    bottom: -10px;
+                    left: 0px;
+                    width: 100%;
+                    height: 10px;
+                    z-index: 3;
+                    content: '';
+                    background: #ffffff;
+                }
+            }
+        }
+        &.is-active a {
+            border-bottom-color: #fff;
+            background: #fff;
+            color: #000;
+            @media (max-width: 1200px) {
+                background: transparent;
+                border-bottom-color: #fff;
+                color: #fff;
+            }
+        }
+        &:hover{
+            // border-top: 1px solid;
+            // border-bottom: 0;
+            // background: #fff;
+            // position: relative;
+            // z-index: 2;
+            // @media (max-width: 1200px) {
+            //     border: 0;
+            // }
+            // a {
+            //     border-bottom-color: #fff;
+            //     background: #fff;
+            //     color: #000;
+            //     @media (max-width: 1200px) {
+            //         background: #fff;
+            //         border-bottom-color: #000;
+            //     }
+            // }
+        }
+    }
+}

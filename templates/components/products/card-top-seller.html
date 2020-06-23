@@ -1,0 +1,74 @@
+<article class="card {{#if alternate}}card--alternate{{/if}}">
+    <figure class="card-figure">
+        <div class="prod-image {{#if theme_settings.halothemes_images_swap}}{{#if images.length '>=' 2}}has-img-swap{{/if}}{{/if}}">
+            <a href="{{url}}">
+                <img class="card-image" src="{{getImage image 'productgallery_size' (cdn theme_settings.default_image_product)}}" alt="{{image.alt}}" title="{{image.alt}}">
+
+                {{#if theme_settings.halothemes_images_swap}}
+                {{#if images.length '>=' 2}}
+                {{#each images}}
+                    {{#if @index '==' 1}}
+                    <img class="card-image img-swap" src="{{getImage this 'productgallery_size' (cdn theme_settings.default_image_product)}}" alt="{{this.alt}}">
+                    {{/if}}
+                {{/each}}
+                {{/if}}
+                {{/if}}
+
+            </a>
+            <div class="actions">
+                <span class="warp-actions">
+                    {{#unless hide_product_quick_view}}
+                        {{#if theme_settings.show_product_quick_view}}
+                            <a href="#" class="btnQV quickview" data-product-id="{{id}}"><i class="fa fa-eye"></i></a>
+                        {{/if}}
+                    {{/unless}}
+                    <a href="/wishlist.php?action=add&product_id={{id}}" class="btnWL" title="{{lang 'account.wishlists.add_item'}}"><i class="fa fa-heart"></i></a>
+                </span>
+            </div>
+            {{#or price.non_sale_price_with_tax price.non_sale_price_without_tax}}
+            <div class="sale-badge">{{lang 'halothemes.sale_badge'}}</div>
+            {{/or}}
+        </div>
+        <figcaption class="prod-desc">
+
+            {{#if theme_settings.show_product_brand}}
+                 <p class="prod-brand" data-test-info-type="brandName">{{#if brand.name}}{{brand.name}} {{/if}}</p>
+            {{/if}}
+
+            <h4 class="prod-name">
+                <a href="{{url}}">{{name}}</a>
+            </h4>
+            <div class="rating-compare">
+                <div class="star-rating" data-test-info-type="productRating">
+                    <div class="rating--small">
+                        {{> components/products/ratings rating=rating}}
+                    </div>
+                </div>
+            </div>
+            <div class="prod-price" data-test-info-type="price">
+                {{#or customer (if theme_settings.restrict_to_login '!==' true)}}
+                    {{> components/products/price price=price customer=customer}}
+                {{else}}
+                    {{> components/common/login-for-pricing}}
+                {{/or}}
+            </div>
+            
+        {{#or customer (if theme_settings.restrict_to_login '!==' true)}}
+            {{#if show_cart_action}}
+                {{#if has_options}}
+                    <a href="{{url}}" class="btn btn-oranges btnATC" data-product-id="{{id}}"><i class="icon-cart"><svg><use xlink:href="#shopping-bag-add"></use></svg></i> {{lang 'products.choose_options'}}</a>
+                {{/if}}
+                {{#if pre_order}}
+                    <a href="{{url}}" class="btn btn-oranges btnATC"><i class="icon-cart"><svg><use xlink:href="#shopping-bag-add"></use></svg></i> {{lang 'products.pre_order'}}</a>
+                {{/if}}
+                {{#if add_to_cart_url }}
+                    <a href="{{add_to_cart_url}}" class="btn btn-oranges btnATC"><i class="icon-cart"><svg><use xlink:href="#shopping-bag-add"></use></svg></i> {{lang 'products.add_to_cart'}}</a>
+                {{/if}}
+                {{#if out_of_stock_message }}
+                    <a href="{{url}}" class="btn btn-out-of-stock btnATC" data-product-id="{{id}}"><i class="icon-cart"><svg><use xlink:href="#shopping-bag-add"></use></svg></i> {{out_of_stock_message}}</a>
+                {{/if}}
+            {{/if}}
+        {{/or}}
+        </figcaption>
+    </figure>
+</article>

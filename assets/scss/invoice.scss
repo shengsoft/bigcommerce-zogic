@@ -1,0 +1,220 @@
+body {
+  background: #fff;
+  color: #000;
+  margin: 10px;
+}
+
+body, td, th {
+  font-family: Arial, Sans-Serif;
+  font-size: 12px;
+}
+h1, h1 a {
+  color: #000;
+  text-decoration: none;
+}
+.Invoice{
+  h1{
+    background:#38383e;
+    padding: 10px 0;
+    img{
+      padding-left:10px;
+    }
+  }
+}
+.Invoice,
+.PackingSlip {
+  border: 2px solid #cacaca;
+  padding: 20px;
+}
+
+.InvoiceTitle,
+.PackingSlipTitle {
+  font-size: 18px;
+  font-weight: bold;
+  color: #000;
+  padding: 5px;
+  margin-bottom: 5px;
+}
+
+.StoreAddress {
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.InvoiceHeading,
+.PackingSlipHeading {
+  font-size: 15px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.CustomerDetails,
+.AddressRow,
+.InvoiceItems,
+.InvoiceDetails,
+.PackingSlipItems,
+.PackingSlipDetails {
+  margin-bottom: 10px;
+
+  li {
+    list-style-type: none;
+  }
+}
+
+.AddressRow {
+    margin-top: 20px;
+}
+.AddressRow h3, .InvoiceDetails .DetailRow .Label {
+    text-transform: uppercase;
+}
+.InvoiceDetails {
+    border-top: 1px solid #000;
+    padding-top: 10px;
+}
+.InvoiceTable .InvoiceItemList tr:last-child td {
+    padding-bottom: 20px;
+}
+.InvoiceTable,
+.PackingSlipTable {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+.InvoiceTable th,
+.PackingSlipTable th {
+  font-weight: bold;
+  padding: 5px 15px;
+  text-align: left;
+  text-transform: uppercase;
+}
+
+.InvoiceTable td,
+.PackingSlipTable td {
+  padding: 5px 15px;
+  vertical-align: top;
+  text-align: left;
+}
+
+.InvoiceTable th:first-child,
+.PackingSlipTable th:first-child,
+.InvoiceTable td:first-child,
+.PackingSlipTable td:first-child {
+    padding-left: 0;
+}
+
+td.ProductQuantity,
+th.ProductQuantity,
+td.ProductCost,
+th.ProductCost,
+td.ProductTotal,
+th.ProductTotal,
+.InvoiceTotals td,
+.InvoiceTotalRow td {
+  text-align: left;
+}
+
+.InvoiceTotalRow:last-child {
+    font-weight: bold;
+}
+
+.AddressRow, .InvoiceDetails, .PackingSlipDetails {
+  overflow: hidden;
+  width: 100%;
+}
+
+.ShippingAddress, .BillingAddress,
+.PackingSlipDetailsLeft, .PackingSlipDetailsRight {
+  float: left;
+  width: 48%;
+
+  ul {
+    padding-left: 0;
+  }
+}
+.InvoiceDetailsLeft, .InvoiceDetailsRight {
+  float: left;
+  width: 100%;
+  ul {
+    padding-left: 0;
+  }
+}
+
+.InvoiceItems,
+.PackingSlipItems {
+  border-top: 1px solid #000;
+  padding-top: 10px;
+}
+.InvoiceItems h2 {
+    font-size: 18px;
+}
+.InvoiceItemList {
+  border-bottom: 1px solid #000;
+}
+
+.InvoiceItemDivider td {
+  padding-top: 10px;
+  border-top: 1px solid #000;
+}
+
+.DetailRow,
+.ConfigurableProductRow {
+  clear: left;
+  margin-top: 6px;
+}
+
+.DetailRow .Label,
+.ConfigurableProductRow .Label {
+  margin: 0 5px 6px 0px;
+  float: left;
+  padding-top: 1px;
+  display: inline;
+  position: relative;
+
+}
+
+.DetailRow .Value,
+.ConfigurableProductRow .Value {
+  display: inline;
+}
+
+.InvoiceDetails .DetailRow .Label,
+.PackingSlipDetails .DetailRow .Label {
+  font-weight: bold;
+}
+
+.ConfigurableProductRow {
+  font-size: 11px;
+  margin-left: 10px;
+}
+.InvoiceTotals .InvoiceTotalRow:first-child td{
+    padding-top: 20px;
+}
+.InvoiceTotals .InvoiceTotalRow:last-child td{
+    padding-bottom: 20px;
+}
+.InvoiceTotals .InvoiceTotal td {
+  font-weight: bold;
+}
+.InvoiceTotals .InvoiceTotalRow td.Title {
+    text-transform: uppercase;
+    font-weight: 700;
+}
+.InvoiceTotals .InvoiceTotalRow td.Title span {
+    font-weight: 400;
+    padding-left: 2px;
+}
+.ProductQuantity {
+  width: 50px;
+}
+
+.PageBreak {
+  page-break-after: always;
+}
+
+.ProductPreOrder {
+  font-size: 11px;
+}
+.InvoiceComments .InvoiceHeading {
+    padding-top: 10px;
+    text-transform: uppercase;
+}

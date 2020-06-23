@@ -1,0 +1,50 @@
+<section class="productCarousel owl-carousel"
+    data-owl='{
+        "nav": true,
+        "dots": false,
+        "items": {{columns}},
+        "margin": 30,
+        "slideBy": {{columns}},
+        "responsive": {
+         "0": {
+            "items": 2,
+            "slideBy": 2
+         },
+         "480": {
+            "items": 2,
+            "slideBy": 2
+         },
+         "641": {
+            "items": 2,
+            "slideBy": 2
+         },
+         "768": {
+            "items": 2,
+            "slideBy": 2
+         },
+         "950": {
+            "items": 2,
+            "slideBy": 2
+         },
+         "992": {
+            "items": 2,
+            "slideBy": 2
+         },
+         "1199": {
+            "items": 3,
+            "slideBy": 3
+         },
+         "1200": {
+            "items": {{columns}},
+            "slideBy": {{columns}}
+         }
+      },
+      "responsiveRefreshRate": 0
+    }'>
+   
+    {{#each cart.suggested_products}}
+         <div class="prod-item">
+            {{> components/products/card hide_product_quick_view=false theme_settings=../theme_settings customer=../customer}}
+       </div>
+    {{/each}}
+</section>

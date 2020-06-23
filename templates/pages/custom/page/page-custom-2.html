@@ -1,0 +1,22 @@
+{{#partial "page"}}
+<main class="page-custom-2 page">
+  	<div class="page-content">
+        {{{page.content}}}
+  	</div>
+</main>
+{{/partial}}
+
+{{> layout/base}}
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/jquery.magnific-popup.min.js"></script>
+<script type="text/javascript">
+	$(document).ready(function(){
+		$('.third-block .content-1').siblings().magnificPopup({
+			delegate: 'a', // the selector for gallery item
+		    type: 'image',
+		    mainClass: 'mfp-fade',
+		    image: {
+		        verticalFit: true
+		    }
+		});
+	});
+</script>

@@ -1,0 +1,28 @@
+<div class="accordion-block sidebarBlock sidebarEffects-window" id="sideShopByBrands">
+    <div
+        class="accordion-navigation toggleLink"
+        role="button"
+        data-collapsible="#facetedSearch-content--ShopByBrands">
+        <h5 class="accordion-title side-module-heading"><span>{{lang 'brand.label'}}</span></h5>
+
+        <div class="accordion-navigation-actions">
+            {{#if selected}}
+                <a href="{{ remove_url }}" class="facetedSearch-clearLink" data-faceted-search-facet>{{lang 'search.faceted.clear'}}</a>
+            {{/if}}
+            <i class="fa fa-chevron-up accordion-indicator toggleLink-text toggleLink-text--off">
+            </i>
+            <i class="fa fa-chevron-down accordion-indicator toggleLink-text toggleLink-text--on">
+            </i>
+        </div>
+    </div>
+    <div id="facetedSearch-content--ShopByBrands" class="navList accordion-content">
+        <ul class="navList-scroll">
+            {{#each shop_by_brand}}
+                <li>
+                    <a href="{{url}}">{{name}}</a>
+                </li>
+            {{/each}}
+        </ul>
+        <a class="view-all-brands" href="{{urls.brands}}"><i class="fa fa-caret-right"></i>{{lang 'common.view_all'}}</a>
+    </div>
+</div>

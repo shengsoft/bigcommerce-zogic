@@ -1,0 +1,72 @@
+// =============================================================================
+// Wishlist List (CSS)
+// =============================================================================
+
+.wishlists-table {
+    margin-left: auto;
+    margin-right: auto;
+    max-width: layout("max");
+}
+
+.wishlist-header {
+    display: none;
+    text-align: center;
+}
+
+.modal .wishlist-header {
+    display: block;
+}
+
+.wishlist-form {
+    @include grid-row();
+
+    margin-left: auto;
+    margin-right: auto;
+    max-width: remCalc(550px);
+
+    .form-field {
+        @include grid-column(12);
+        padding: 0;
+    }
+}
+
+.share-wishlist {
+    margin-left: auto;
+    margin-right: auto;
+    max-width: remCalc(650px);
+    text-align: center;
+}
+.page-type-wishlist .prod-item > form {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 5px;
+    z-index: 10;
+    text-align: center;
+    margin-bottom: 10px;
+}
+.page-type-wishlist {
+    & .wrap-account {
+       & .account {
+        padding: 30px 20px;
+       }
+       & .module-wrapper {
+            & .productBlockContainer {
+                & .prod-item {
+                    padding-bottom: 55px;
+                    @media (max-width: 991px) {
+                        width: 33.33%;
+                        padding-bottom: 60px;
+                    }
+                    @media (max-width: 767px) {
+                        width: 50%;
+                    }
+                    @media (max-width: 480px) {
+                        width: 100%;
+                    }
+                }
+            }
+        }
+        
+    }
+}

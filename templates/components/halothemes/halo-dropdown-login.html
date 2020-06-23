@@ -1,0 +1,33 @@
+<div class="customer-dropdown-login hidden-xs hidden-sm">
+    <div class="customer-login">
+        {{#if customer}}
+        <a href="{{urls.auth.logout}}"><span>{{lang 'common.logout'}}</span></a>
+        {{else}}
+        <a href="javascript:void(0);" class="toggle-dropdown-login">{{lang 'common.login'}}</a>
+        <div id="dropdown-login">
+            <h3>Customer Login</h3>
+            <div class="pad-popup">
+                <form class="login-popup" id="loginForm" action="{{settings.secure_base_url}}/login.php?action=check_login" method="post" name="mainLoginForm">
+                    <fieldset class="form-fieldset">
+                       <div class="form-field">
+                            <label class="form-label" for="login_email">{{lang 'login.field_email'}}</label>
+                            <input class="form-input" name="login_email" id="login_email" type="email">
+                        </div>
+                        <div class="form-field">
+                            <label class="form-label" for="login_pass">{{lang 'login.field_password'}}</label>
+                            <input class="form-input" id="login_pass" type="password" name="login_pass">
+                        </div>
+                        <div class="form-actions">
+                            <input type="submit" class="btn btn-alt btn-lg" value="{{lang 'common.login'}}">
+                            <a class="forgot-password" href="{{urls.auth.forgot_password}}">{{lang 'login.forgot_password' }}</a>
+                        </div>
+                    </fieldset>
+                </form>
+                <div class="separated-form">
+                    <a href="{{urls.auth.create_account}}" class="btn btn-primary"><span>{{lang 'login.new_customer.create_a_new_account'}}</span></a>
+                </div>
+            </div>
+        </div>
+        {{/if}}
+    </div>
+</div>

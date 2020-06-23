@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html class="no-js" lang="{{ locale_name }}">
+    <head>
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-KKRN89C');</script>
+<!-- End Google Tag Manager -->
+        <title>{{ head.title }}</title>
+        {{{ head.meta_tags }}}
+        {{{ head.config }}}
+        {{#block "head"}} {{/block}}
+        <link href="{{ head.favicon }}" rel="shortcut icon">
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+        {{{stylesheet '/assets/css/theme.css'}}}
+
+        {{#if category}}
+            <script src="//cdn.searchspring.net/search/v3/js/searchspring.catalog.js?bdlz1a" search="search_query" category="{{#each breadcrumbs}}{{#unless @first}}{{name}}{{#unless @last}}>{{/unless}}{{/unless}}{{/each}}" name="{{ category.name }}" hide-content="#searchspring-sidebar, #searchspring-content"></script>
+        {{else if brand}}
+            <script src="//cdn.searchspring.net/search/v3/js/searchspring.catalog.js?bdlz1a" search="search_query" brand="{{ brand.name }}" hide-content="#searchspring-sidebar, #searchspring-content"></script>
+        {{else}}
+            <script src="//cdn.searchspring.net/search/v3/js/searchspring.catalog.js?bdlz1a" search="search_query"{{#if page.title "!=" 'Search Results'}} defer{{/if}} hide-content="#searchspring-sidebar, #searchspring-content"></script>
+        {{/if}}
+
+        {{{head.scripts}}}
+        {{{head.rsslinks}}}
+
+        {{inject 'themeSettings' theme_settings}}
+        {{inject 'genericError' (lang 'common.generic_error')}}
+        {{inject 'maintenanceMode' settings.maintenance}}
+        {{inject 'urls' urls}}
+        {{{snippet 'htmlhead'}}}
+        <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed" rel="stylesheet">
+    </head>
+
+    <body class="page-type-{{page_type}}">
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KKRN89C"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+               <div id="st-container" class="st-container">
+            <!-- content push wrapper -->
+            <div class="st-pusher">
+                <nav class="st-menu st-effect st-effect-1" id="mobile-categories">
+                    <ul class="mobile-nav">
+                        {{#if customer}}
+                        <li id="mobileAccountSidebar" class="hidden-md hidden-lg"><a class="navUser-action" href="#"><span>{{lang 'common.my_account'}}</span></a></li>
+                        {{else}}
+                        <li id="mobileAccountSidebar" class="hidden-md hidden-lg"><a href="{{urls.account.index}}"><span>{{lang 'common.my_account'}}</span></a></li>
+                        {{/if}}
+
+                        <li class="subAccount">
+                            {{#if settings.account_creation_enabled}}
+                            <div class="login-register">
+                                {{#if customer}}
+                                    <div class="logged-in">{{lang 'Welcome back,'}} <strong>{{customer.name}}. </strong></div>
+                                {{else}}
+                                    <div class="not-logged">
+                                        <span><a href="{{urls.auth.login}}">{{lang 'common.login'}}</a></span>
+                                        <span><a href="{{urls.auth.create_account}}">{{lang 'common.sign_up'}}</a></span>
+                                    </div>
+                                {{/if}}
+                            </div>
+                            {{/if}}
+
+                            {{#if settings.show_wishlist}}
+                            <div class="wishlist-link">
+                                <a href="{{urls.account.wishlists.all}}"><span>{{lang 'common.my_wishlist'}}</span></a>
+                            </div>
+                            {{/if}}
+                            {{#if customer.store_credit.value '>' 0}}
+                            <div class="hasSub">
+                                <a class="navUser-action--storeCredit">
+                                    {{lang 'common.store_credit_overview' credit=customer.store_credit.formatted}}
+                                </a>
+                                <span class="toggle-expand"></span>
+                                <div id="storeCredit-dropdown">
+                                    <div class="alert alert-info">
+                                        {{{lang 'common.store_credit' store_credit=customer.store_credit.formatted}}}
+                                    </div>
+                                </div>
+                            </div>
+                            {{/if}}
+
+                            {{#if settings.gift_certificates_enabled}}
+                            <div>
+                                <a href="{{urls.gift_certificate.purchase}}">{{lang 'common.gift_cert'}}</a>
+                            </div>
+                            {{/if}}
+
+                            {{#if customer}}
+                            <div><a href="{{urls.account.index}}">{{lang 'common.my_account'}}</a></div>
+                            <div><a href="{{urls.account.orders.all}}">{{lang 'account.nav.orders'}}</a></div>
+                            {{#if settings.returns_enabled}}
+                            <div><a href="{{urls.account.returns}}">{{lang 'account.nav.returns'}}</a></div>
+                            {{/if}}
+                            <div><a href="{{urls.account.inbox}}">{{lang 'account.mobile_nav.messages'}}</a></div>
+                            <div><a href="{{urls.account.addresses}}">{{lang 'account.nav.addresses'}}</a></div>
+                            {{#if settings.show_wishlist}}
+                            <div><a href="{{urls.account.wishlists.all}}">{{lang 'account.mobile_nav.wishlists'}}</a></div>
+                            {{/if}}
+                            <div><a href="{{urls.account.recent_items}}">{{lang 'account.nav.recently_viewed'}}</a></div>
+                            <div><a href="{{urls.account.details}}">{{lang 'account.nav.settings'}}</a></div>
+
+                            {{/if}}
+
+                            {{#if customer}}
+                            <div><a href="{{urls.auth.logout}}">{{lang 'common.logout'}}</a></div>
+                            {{/if}}
+
+
+                        </li>
+                    </ul>
+
+                </nav>
+                <nav class="st-menu st-effect st-effect-2" id="mobile-customer">
+
+                </nav>
+                {{{snippet 'header'}}}
+                <div class="icons-svg-sprite">{{> components/common/icons/icon-defs }}</div>
+
+                {{#if settings.privacy_cookie}}
+                    {{> components/common/cookie}}
+                {{/if}}
+
+                {{> components/common/header }}
+                {{> components/common/body }}
+                {{> components/common/footer }}
+
+                <script src="{{cdn 'assets/dist/theme-bundle.js'}}"></script>
+                <script>
+                    // Exported in app.js
+                    window.stencilBootstrap("{{template_file}}", {{jsContext}}).load();
+                </script>
+
+                <script>
+
+                {{#if theme_settings.halothemes_top_bar_promotion}}
+                    window.topBarPromotion();
+                {{/if}}
+
+                {{#if theme_settings.halothemes_sticky_navigation}}
+                    //Sticky Navigation
+                    window.stickyNavigation();
+                {{/if}}
+
+                {{#if theme_settings.halothemes_lazy_loading_effect}}
+                    //Lazy Loading Effect
+                    window.lazyLoadingEffect();
+                {{/if}}
+
+                </script>
+
+                <!-- <script src="{{cdn '/assets/js/theme/halothemes/jquery.min.js'}}"></script> -->
+                <script src="{{cdn '/assets/modernizr-custom.js'}}"></script>
+                {{#if theme_settings.halothemes_megamenu}}
+                    <!-- Begin HaloThemes MegaMenu -->
+                    {{> components/halothemes/halo-megamenu}}
+                    <script src="{{cdn '/assets/js/theme/halothemes/haloMegaMenu.js'}}"></script>
+                    <!-- End HaloThemes MegaMenu -->
+                {{/if}}
+                <script>
+                jQuery(document).ready(function($) {
+                    $('#mobile-categories ul.mobile-nav').prepend($('#menu.navPages-container > nav.navPages > ul').html());
+                    // $('#mobile-categories ul.mobile-nav').css('max-height', screen.height);
+                    $('#mobile-categories ul li').has('ul li').addClass('hasSub').prepend('<span class="toggle-expand"></span>');
+
+                    $('#mobile-categories ul li.hasSub > span').click(function() {
+                       if ($(this).hasClass('toggle-expand')) {
+                           $(this).siblings('.subMegaMenu').addClass('sub-expand');
+                           $(this).parent().addClass('expanded');
+                           $(this).attr('class', 'toggle-close');
+                       } else if ($(this).hasClass('toggle-close')) {
+                           $(this).siblings('.subMegaMenu').removeClass('sub-expand');
+                           $(this).parent().removeClass('expanded');
+                           $(this).attr('class', 'toggle-expand');
+                       }
+                    });
+                });
+                </script>
+
+                {{#if settings.show_newsletter_box}}
+                <!-- BEGIN Footer SubscribeForm Validate -->
+                <script>
+                jQuery(document).ready(function($){
+                    $('#footerSubcribeFormSubmit').submit(function(event){
+                        if ($('#footerSubcribeFormSubmit').find('#nl_first_name').val()  == "") {
+                          alert("Please enter your Name!");
+                          $('#footerSubcribeFormSubmit').find('#nl_first_name').focus();
+                          return false;
+                       } else if ($('#footerSubcribeFormSubmit').find('#nl_email').val()  == "") {
+                          alert("Please enter a valid email address, such as john@example.com.");
+                          $('#footerSubcribeFormSubmit').find('#nl_email').focus();
+                          return false;
+                       }
+
+                    });
+                });
+                </script>
+                <!-- END Footer SubscribeForm Validate -->
+                {{/if}}
+
+                <!-- Yotpo -->
+                <!-- <script type="text/javascript">
+                    (function e(){var e=document.createElement("script");e.type="text/javascript",e.async=true,e.src="//staticw2.yotpo.com/DTsORhyoy2lUWUFnt2sv4PSfpxHRwuboVCv4aDIU/widget.js";var t=document.getElementsByTagName("script")[0];t.parentNode.insertBefore(e,t)})();
+                </script> -->
+    
+
+                {{{footer.scripts}}}
+                {{{snippet 'footer'}}}
+                <!-- {{> components/halothemes/halo-popup-login }} -->
+            </div>
+        </div>
+
+    </body>
+</html>

@@ -1,0 +1,63 @@
+---
+blog:
+    posts:
+        limit: 5
+        pages: 3
+        summary: 500
+---
+{{#partial "page"}}
+{{> components/common/breadcrumbs breadcrumbs=breadcrumbs}}
+<div class="container">
+
+    <div class="category-heading">
+        <h1 class="page-heading">{{ blog.name }}</h1>
+    </div>
+
+    <div class="page">
+        <aside class="page-sidebar col-sm-3" id="faceted-search-container">
+            {{> components/halothemes/sidebar-toggle-mobile}}
+            <nav>
+                <div id="sideRecentPosts" class="sidebarBlock accordion-block sidebarEffects-window">
+                    <div
+                        class="accordion-navigation toggleLink"
+                        role="button"
+                        data-collapsible="#facetedSearch-content--RecentPosts">
+                        <h5 class="accordion-title side-module-heading"><span>{{lang 'blog.recent_posts'}}</span></h5>
+
+                        <div class="accordion-navigation-actions">
+                            {{#if selected}}
+                                <a href="{{ remove_url }}" class="facetedSearch-clearLink" data-faceted-search-facet>{{lang 'search.faceted.clear'}}</a>
+                            {{/if}}
+                            <i class="fa fa-chevron-up accordion-indicator toggleLink-text toggleLink-text--off">
+                            </i>
+                            <i class="fa fa-chevron-down accordion-indicator toggleLink-text toggleLink-text--on">
+                            </i>
+                        </div>
+                    </div>
+                    <div id="facetedSearch-content--RecentPosts" class="accordion-content">
+                        <ul class="navList">
+                            {{#each blog.posts}}
+                                <li><a href="{{this.url}}">{{this.title}}</a></li>
+                            {{/each}}
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- BEGIN Side Custom CMS Block -->
+                {{> components/halothemes/side-custom-block}}
+                <!-- END Side Custom CMS Block -->
+            </nav>
+        </aside>
+        <main class="page-content col-sm-9">
+            <div class="brg-content">                
+                {{#each blog.posts}}
+                    {{> components/blog/post post=this settings=../settings show_tags=true}}
+                {{/each}}
+                {{> components/common/paginator pagination.blog}}
+            </div>
+        </main>
+    </div>
+</div>
+{{/partial}}
+{{> layout/base}}
+

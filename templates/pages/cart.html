@@ -1,0 +1,91 @@
+{{#partial "page"}}
+{{> components/common/breadcrumbs breadcrumbs=breadcrumbs}}
+<div class="container">
+    <div class="page">
+
+        <main class="page-content" data-cart>
+            <div class="cart-page-title">
+                {{> components/cart/page-title}}
+                <div class="value-divs">
+                    <div class="returns-value">
+                        <div class="value-icon">
+                            <img src="https://cdn11.bigcommerce.com/s-8mji1/product_images/uploaded_images/cart-hassel-free-icon.png">
+                        </div>
+                        <div class="value-text">
+                            <h2 class="value-shipping-title">Hassle-Free Returns</h2>
+                            <p class="value-shipping-text">100% happiness guaranteed or your money back</p>
+                        </div>
+                    </div>
+                    <div class="shipping-value">
+                        <div class="value-icon">
+                            <img src="https://cdn11.bigcommerce.com/s-8mji1/product_images/uploaded_images/cart-shipping-icon.png">
+                        </div>
+                        <div class="value-text">
+                            <h2 class="value-shipping-title">Free Shipping</h2>
+                            <p class="value-shipping-text">All Zogics branded cases AND orders $299+ ship fast & free</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div data-cart-status>
+                {{> components/cart/status-messages}}
+            </div>
+            <a class="btn btn-alt btn-continue" href="{{urls.home}}" title="{{lang 'cart.continue_shopping'}}">{{lang 'cart.continue_shopping'}}</a>
+            <div class="bgr-cart">
+            {{#if cart.items.length}}
+                <div class="loadingOverlay"></div>
+                <div class="warp-border">
+                    <div class="cart-header-row">
+                        <p class="cart-header-item">{{lang 'cart.checkout.item'}}</p>
+                        <!-- <p class="cart-header-item cart-header-price">{{lang 'cart.checkout.price'}}</p> -->
+                        <p class="cart-header-item cart-header-quantity">{{lang 'cart.checkout.quantity'}}</p>
+                        <p class="cart-header-item">{{lang 'cart.checkout.total'}}</>
+                    </div>
+                    <div data-cart-content>
+                        {{> components/cart/content}}
+                    </div>
+                    <div class="row">
+                        <div class="col-md-7 col-sm-5 col-xs-12"></div>
+                        <div class="cart-total-div col-md-5 col-sm-7 col-xs-12">
+                            <div data-cart-totals>
+                                {{> components/cart/totals}}
+                            </div>
+                            {{#if cart.show_primary_checkout_button}}
+                                <div class="cart-actions text-right col-md-5 col-sm-7 col-xs-12">
+                                    <a class="btn btn-checkout btn-lg" href="{{urls.checkout.single_address}}" title="{{lang 'cart.checkout.title'}}">{{lang 'cart.added_to_cart.proceed_to_checkout'}}</a>
+                                    {{#if cart.show_multiple_address_shipping}}
+                                        <a class="checkoutMultiple" href="{{urls.checkout.multiple_address}}">
+                                            {{lang 'cart.preview.checkout_multiple'}} <i class="fa fa-caret-right"></i>
+                                        </a>
+                                    {{/if}}
+                                </div>
+                            {{else}}
+                                <div class="cart-actions col-md-5 col-sm-7 col-xs-12">
+                                    <a class="btn btn-alt" href="{{urls.home}}" title="{{lang 'cart.continue_shopping'}}">{{lang 'cart.continue_shopping'}}</a>
+                                </div>
+                            {{/if}}
+
+                            {{#if cart.additional_checkout_buttons}}
+                                <div class="cart-additionalCheckoutButtons col-md-5 col-sm-7 col-xs-12">
+                                    {{#each cart.additional_checkout_buttons}}
+                                        {{{this}}}
+                                    {{/each}}
+                                </div>
+                            {{/if}}
+                        {{else}}
+                            <div class="alert alert-warning text-center">{{lang 'cart.checkout.empty_cart'}}</div>
+                        {{/if}}
+                        </div>
+                    </div>
+                </div>
+
+
+            {{{snippet 'cart'}}}
+            </div>
+        </main>
+    </div>
+</div>
+{{#each cart.items}}<script type="application/vnd.hubshoply.cartItem"><img src="{{getImage image 'productthumb_size' (cdn ../../theme_settings.default_image_product)}}"/></script>{{/each}}
+{{/partial}}
+{{> layout/base}}

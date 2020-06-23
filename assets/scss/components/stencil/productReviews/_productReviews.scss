@@ -1,0 +1,58 @@
+// =============================================================================
+// PRODUCT REVIEWS (CSS)
+// =============================================================================
+// Review list
+//
+// 1. Kill extra display inline-block spacing
+// -----------------------------------------------------------------------------
+.productReviews-list {
+   @include u-listBullets("none");
+   font-size: 0; // 1
+   margin-left: 0 !important;
+}
+
+// Review item
+// -----------------------------------------------------------------------------
+.productReview {
+   display: block;
+   float: none;
+   font-size: fontSize("base");
+   vertical-align: top;
+   margin-bottom: 30px;
+   width: 100%;
+}
+
+.productReview-title {
+   margin: 0;
+   text-transform: none;
+}
+
+.productReview-author {
+   color: stencilColor("color-textSecondary");
+   margin-bottom: spacing("base");
+}
+
+.productReview-rating {
+   display: inline-block;
+   margin-bottom: spacing("quarter");
+}
+
+.productReview-ratingNumber {
+   @include u-hidden("visually");
+}
+
+#productReviews-content .pagination-list {
+    margin-bottom: 30px;
+   & li {
+      padding-left: 0;
+      padding-right: 0;
+      & a {
+         padding-left: 0;
+         padding-right: 0;
+         text-align: center;
+      }
+      & + li {
+        margin-left: 20px;
+      }
+   }
+}

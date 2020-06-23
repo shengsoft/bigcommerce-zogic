@@ -1,0 +1,4 @@
+<div id="HomeTopSellers" class="module-wrapper wow fadeIn"  {{#if settings.data_tag_enabled}} data-list-name="Most Popular Products" {{/if}}>
+    <h2 class="module-heading"><span>{{lang 'products.top' }}</span></h2> 
+    {{> components/products/carousel products=products}}
+</div>

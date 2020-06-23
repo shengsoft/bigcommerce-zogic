@@ -1,0 +1,44 @@
+<div class="form-field product-option-popup" data-product-attribute="set-select">
+    <label class="form-label form-label--alternate form-label--inlineSmall" for="attribute_{{id}}">
+        {{#if required}}
+            <small>{{lang 'common.required'}}</small>
+        {{/if}}
+        {{ this.display_name }}:
+        {{#if display_name '==' "Choose Frequency"}}
+            <a class="details-link" href="#">Learn More</a>
+        {{/if}}
+    </label>
+
+    <select class="form-select form-select--small" style="padding-right: 4rem;" name="attribute[{{this.id}}]" id="attribute_{{id}}" {{#if required}}required{{/if}}>
+        <option value="">{{lang 'products.choose_options'}}</option>
+        {{#each this.values}}
+            {{#if ../display_name '==' "Choose Frequency"}} 
+                {{#if label '==' 'Send every 3 months'}}
+                {{else if label '==' 'Send every 4 months'}}
+                {{else if label '==' 'Send every 5 months'}}
+                {{else if label '==' 'Send every 6 months'}}
+                {{else}}
+                    <option data-product-attribute-value="{{id}}" value="{{id}}" {{#if selected}}selected{{/if}} {{#if label '!=' 'One-time Purchase'}}class = "recurring" {{/if}}>{{label}}</option>
+                {{/if}}
+
+            {{else}}
+                <option data-product-attribute-value="{{id}}" value="{{id}}" {{#if selected}}selected{{/if}}>{{label}}</option>
+            {{/if}}
+        {{/each}}
+    </select>
+    <div class="mfp-hide" id="autoship-popup">
+        <div class="img-container">
+            <img class="popup-img" src="/product_images/uploaded_images/autoship-logo-2020.png" alt="" >
+        </div>
+        <h2>Zogics Autoship Program</h2>
+        <div class="message-left message-divs">
+            <p class="message-title">Save time & schedule your orders</p>
+            <p class="message">Choose your delivery frequency to meet your needs, from 1 week to 3 months, on eligible products. Never run out of refills again!</p>
+        </div>
+        <div class="message-right message-divs">
+            <p class="message-title">Manage your autoshipments</p>
+            <p class="message">Update your payment method, skip a delivery, cancel your autoshipment, & more right from your account.</p>
+        </div>
+
+    </div>
+</div>

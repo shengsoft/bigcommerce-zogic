@@ -1,0 +1,127 @@
+<!-- @HaloMegaMenu Library -->
+<script src="{{cdn '/assets/js/theme/halothemes/haloMegaMenu.js'}}"></script>
+<script>
+jQuery(document).ready(function($) {
+    /* Megamenu Settings */
+    // information at bottom categories with variable : bottomCates
+    //bottomCates: '<div class="own-text"><p>free shipping in the u.s. & internationally</p></div>'
+
+    // SHOP
+    menuItem(1).HaloMegaMenu({
+        dropAlign: 'fullWidth',   // Dropdown MegaMenu Alignment: left, right, center, fullWidth
+        dropWidth: 'fullWidth',       // Width of Dropdown MegaMenu (if dropAlign: fullWidth => dropWidth auto set 100%)
+        dropType: 'noImage',   // Type of Dropdown MegaMenu content: imageLeft, imageRight, noImage
+        imageAreaWidth: '',    // width of images area
+        cateAreaWidth: '100%',     // width of categories area
+        cateColumns: 6,           // columns of categories area - max 5 columns
+        addclass_special: 'fullWidth',
+        bottomCates: '<div class="bottom-categories">\
+                        <ul>\
+                            <li>\
+                                <a class="navPages-action" href="/sale/">Sale <span>></span></a>\
+                            </li>\
+                            <li>\
+                                <a class="navPages-action" href="/brands/">Shop By Brand <span>></span></a>\
+                            </li>\
+                            <li>\
+                                <a class="navPages-action" href="/shop-by-zone/">Shop By Zone <span>></span></a>\
+                            </li>\
+                            <li>\
+                                <a class="navPages-action" href="/commercial-gym-flooring/">Flooring <span>></span></a>\
+                            </li>\
+                            <li>\
+                                <a class="navPages-action" href="/zogics-lockers/">Lockers <span>></span></a>\
+                            </li>\
+                        </ul>\
+                    </div>',
+        disabled: false
+    });
+
+    // PRO TIPS
+    menuItem(2).HaloMegaMenu({
+        dropAlign: 'fullWidth',   // Dropdown MegaMenu Alignment: left, right, center, fullWidth
+        dropWidth: 'center',       // Width of Dropdown MegaMenu (if dropAlign: fullWidth => dropWidth auto set 100%)
+        dropType: 'imageTop',     // Type of Dropdown MegaMenu content: imageLeft, imageRight, noImage
+        imageAreaWidth: '',     // width of images area
+        cateAreaWidth: '80%',    // width of categories area
+        cateColumns: 5,           // columns of categories area - max 5 columns
+        // contents for images column (HTML supported)
+        imagesTop: ['<a href="https://blog.zogics.com/topic/product-resources"><span class="image-top"></span></a>',
+            '<a href="https://blog.zogics.com/topic/industry-news"><span class="image-top"></span></a>',
+            '<a href="https://blog.zogics.com/topic/training-tips"><span class="image-top"></span></a>',
+            '<a href="https://blog.zogics.com/topic/customer-spotlight"><span class="image-top"></span></a>',
+            '<a href="https://blog.zogics.com/topic/trending"><span class="image-top"></span></a>'
+        ],
+        bottomCates: '<a class="btn view-all-protips" href="https://blog.zogics.com/">View Blog <svg><use xlink:href="#icon-arrow-right"></use></svg></a>',
+        disabled: false
+    });
+
+    // ABOUT
+    menuItem(3).HaloMegaMenu({
+        dropAlign: 'fullWidth',   // Dropdown MegaMenu Alignment: left, right, center, fullWidth
+        dropWidth: 'fullWidth',       // Width of Dropdown MegaMenu (if dropAlign: fullWidth => dropWidth auto set 100%)
+        dropType: 'imageLeft',    // Type of Dropdown MegaMenu content: imageLeft, imageRight, noImage
+        imageAreaWidth: '20%',    // width of images area
+        cateAreaWidth: '80%',     // width of categories area
+        cateColumns: 3,           // columns of categories area - max 5 columns
+        addclass_special: 'imageLeft',
+        // contents for images column (HTML supported)
+        images: '<div class="left_img"><p class="logo"><a href="https://zogics.com"><img src="/product_images/uploaded_images/megamenu-colleft.png" /></a></p><p class="info"><a href="mailto:hello@zogics.com" style="color: #38383e;">HELLO@ZOGICS.COM</a> <br> 888.623.0088 <br><a id="click-to-chat__cta--text" class="cta cta--blue" onclick="window.hubspot.messages.EXPERIMENTAL_API.requestWidgetOpen();"><span style="color: #ea3a02;">LIVE CHAT SUPPORT</span></a></p><p class="address">309 PITTSFIELD ROAD <br> LENOX, MA 01240</p></div>',
+        disabled: false
+    });
+
+    // Facility Design
+    menuItem(4).HaloMegaMenu({
+        dropAlign: 'fullWidth',   // Dropdown MegaMenu Alignment: left, right, center, fullWidth
+        dropWidth: 'fullWidth',       // Width of Dropdown MegaMenu (if dropAlign: fullWidth => dropWidth auto set 100%)
+        dropType: 'imageLeft',    // Type of Dropdown MegaMenu content: imageLeft, imageRight, noImage
+        imageAreaWidth: '60%',    // width of images area
+        cateAreaWidth: '40%',     // width of categories area
+        cateColumns: 1,           // columns of categories area - max 5 columns
+        addclass_special: 'imageLeft',
+        // contents for images column (HTML supported)
+        images: '<div class="left_img">\
+                    <img src="http://via.placeholder.com/320x180.jpg" alt="" title="">\
+                </div>\
+                <div class="right_content">\
+                    <h2>Planning a facility buildout or renovation?</h2>\
+                    <p>Get your project started with Zogics\' design experts or explore our range of facility design services.</p>\
+                    <a class="btn start-your-project" href="#">Stare your Project</a>\
+                </div>',
+        disabled: false
+    });
+    menuItem(5).HaloMegaMenu({
+        dropAlign: 'fullWidth',   // Dropdown MegaMenu Alignment: left, right, center, fullWidth
+        dropWidth: 'fullWidth',       // Width of Dropdown MegaMenu (if dropAlign: fullWidth => dropWidth auto set 100%)
+        dropType: 'imageLeft',    // Type of Dropdown MegaMenu content: imageLeft, imageRight, noImage
+        imageAreaWidth: '50%',    // width of images area
+        cateAreaWidth: '50%',     // width of categories area
+        cateColumns: 1,           // columns of categories area - max 5 columns
+        addclass_special: 'imageLeft',
+        // contents for images column (HTML supported)
+        images: '<div class="top_img">\
+                    <img src="/product_images/uploaded_images/flooring-img.png" alt="" title="">\
+                    <img src="/product_images/uploaded_images/locker-img.png" alt="" title="">\
+                </div>\
+                <div class="bottom_content">\
+                    <h2>The industry’s best custom flooring & lockers</h2>\
+                    <p>Learn about our industry leading rubber flooring, turf, and lockers for your upcoming project.</p>\
+                </div>',
+        disabled: false
+    });
+
+  });
+</script>
+
+<script>
+    jQuery(document).ready(function($) {
+      $('.header-top-left .navPages-container .navPage-subMenu-list .navPages-item').each(function(){
+         if (($(this).find('a.navPages-action').text().toLowerCase() == 'new arrivals') || ($(this).find('a.navPages-action').text().toLowerCase() == 'best sellers') || ($(this).find('a.navPages-action').text().toLowerCase() == 'clearance') || ($(this).find('a.navPages-action').text().toLowerCase() == 'shop by brand') || ($(this).find('a.navPages-action').text().toLowerCase() == 'shop by goal')){
+            $(this).addClass('bottom-category');
+         }
+         if ($(this).find('a.navPages-action').text().toLowerCase() == 'shop by goal') {
+            $(this).addClass('last');
+        }
+      });
+   });
+</script>

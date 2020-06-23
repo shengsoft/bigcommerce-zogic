@@ -1,0 +1,58 @@
+// =============================================================================
+// WRITE A REVIEW (CSS)
+// =============================================================================
+.writeReview-productDetails {
+    @include breakpoint("medium") {
+        @include grid-column(6);
+    }
+    @media (max-width: 991px) {
+        text-align: center;
+        margin-bottom: 25px;
+    }
+    img {
+        margin-bottom: 20px;
+    }
+    .product-brand {
+        color: #8c8c8c;
+        font-size: 12px;
+        font-weight: 700;
+        text-transform: uppercase;
+        margin: 0 0 15px;
+    }
+    .product-title {
+        margin-top: 0;
+        text-transform: none;
+        font-size: 13px;
+        font-weight: 600;
+        line-height: 22px;
+        color: stencilColor('card-title-color');
+        letter-spacing: 0;
+    }
+    
+}
+#modal-review-form{
+    .modal-header{
+        border: 0;
+    }
+    .modal-header-title{
+        margin-bottom: 25px;
+        font-size: 15px;
+        font-weight: 700;
+        color: #2d2d2d;
+        text-transform: uppercase;
+    } 
+}
+.writeReview-form {
+    @include breakpoint("medium") {
+        @include grid-column(6);
+    }
+    .form-label {
+        font-weight: 700;
+        color: #000;
+    }
+    & textarea {
+        resize: none;
+        min-height: 70px;
+    }
+    
+}

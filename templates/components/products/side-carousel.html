@@ -1,0 +1,43 @@
+<section class="productCarousel owl-carousel"
+    data-owl='{
+        "nav": true,
+        "dots": false,
+        "items": 1,
+        "singleItem": true,
+        "margin": 20,
+        "slideBy": 1,
+        "autoHeight": false,
+        "responsive": {
+         "0": {
+            "items": 1,
+            "slideBy": 1
+         },
+         "480": {
+            "items": 1,
+            "slideBy": 1
+         },
+         "641": {
+            "items": 1,
+            "slideBy": 1
+         },
+         "768": {
+            "items": 1,
+            "slideBy": 1
+         },
+         "992": {
+            "items": 1,
+            "slideBy": 1
+         },
+         "1200": {
+            "items": 1,
+            "slideBy": 1
+         }
+      },
+      "responsiveRefreshRate": 0
+    }'>
+    {{#each products}}
+    <div class="prod-item">
+        {{> components/products/card-top-seller theme_settings=../theme_settings customer=../customer}}
+    </div>
+    {{/each}}
+</section>

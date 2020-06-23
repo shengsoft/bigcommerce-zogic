@@ -1,0 +1,61 @@
+<section class="heroCarousel-wrapper">
+    <div class="heroCarousel"
+        data-slick='{
+            "arrows": true,
+            "dots": true,
+            "fade": true,
+            "slidesToShow": 1,
+            "slidesToScroll": 1,
+            "pauseOnHover": false,
+            "autoplay": false,
+            "autoplaySpeed": {{carousel.swap_frequency}},
+            "adaptiveHeight": true,
+            "lazyLoad": "anticipated",
+            "nextArrow": "<svg class=&apos;slick-next slick-arrow slick-arrow-custom&apos;><use xlink:href=&apos;#slick-next&apos;></use></svg>", 
+            "prevArrow": "<svg class=&apos;slick-prev slick-arrow slick-arrow-custom&apos;><use xlink:href=&apos;#slick-prev&apos;></use></svg>"
+        }'>
+        {{#each carousel.slides}}
+            <div class="heroCarousel-slide {{#if ../theme_settings.homepage_stretch_carousel_images}}heroCarousel-slide--stretch{{/if}}">
+                {{#if @index '==' 0}}
+                    {{#if (merge this video=../../theme_settings.carousel_vid0)}}{{/if}}
+                {{/if}}
+                {{#if @index '==' 1}}
+                    {{#if (merge this video=../../theme_settings.carousel_vid1)}}{{/if}}
+                {{/if}}
+                {{#if @index '==' 2}}
+                    {{#if (merge this video=../../theme_settings.carousel_vid2)}}{{/if}}
+                {{/if}}
+                {{#if @index '==' 3}}
+                    {{#if (merge this video=../../theme_settings.carousel_vid3)}}{{/if}}
+                {{/if}}
+                {{#if @index '==' 4}}
+                    {{#if (merge this video=../../theme_settings.carousel_vid4)}}{{/if}}
+                {{/if}}
+                {{#if video}}
+                    <div class="heroCarousel-video-wrapper">
+                        <img class="heroCarousel-image" data-lazy="{{image}}" alt="{{alt_text}}" title="{{alt_text}}" src="{{image}}"
+                        {{#if image_width}}width="{{image_width}}"{{/if}} {{#if image_height}}height="{{image_height}}"{{/if}} />
+                        <div class="heroCarousel-video">
+                            <div data-youtube="{{video}}">
+                            </div>
+                        </div>
+                    </div>
+                {{else}}
+                    <img class="heroCarousel-image" data-lazy="{{image}}" alt="{{alt_text}}" title="{{alt_text}}" src="{{image}}"
+                    {{#if image_width}}width="{{image_width}}"{{/if}} {{#if image_height}}height="{{image_height}}"{{/if}} />
+                {{/if}}
+                {{#if heading}}
+                    {{> components/carousel-content show_background=true}}
+                {{else}}
+                    {{#if text}}
+                        {{> components/carousel-content show_background=true}}
+                    {{else}}
+                        {{#if button_text}}
+                            {{> components/carousel-content show_background=false}}
+                        {{/if}}
+                    {{/if}}
+                {{/if}}
+            </div>
+        {{/each}}
+    </div>
+</section>

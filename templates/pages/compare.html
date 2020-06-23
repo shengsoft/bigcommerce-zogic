@@ -1,0 +1,96 @@
+{{#partial "page"}}
+<div class="container">
+{{inject 'comparisons' comparisons}}
+{{inject 'compareRemoveMessage' (lang 'compare.no_remove')}}
+{{> components/common/breadcrumbs breadcrumbs=breadcrumbs}}
+<h1 class="page-heading">{{lang 'compare.header' products=comparisons.length}}</h1>
+<div class="page">
+    <main class="page-content">        
+        <div class="compare">
+            <div class="compare-content">
+                <ul class="product-list product-list-{{comparisons.length}}">
+                    {{#each comparisons}}
+                    <li class="product-card">
+                        <article class="card">
+                            <figure class="card-figure">
+                                <img class="card-image" src="{{getImage image 'product_size' (cdn theme_settings.default_image_product)}}" alt="{{image.alt}}" title="{{image.alt}}">
+                                <a class="compareTable-removeProduct" data-comparison-remove href="{{#if remove_url}}{{remove_url}}{{else}}#{{/if}}">
+                                    <svg class="icon">
+                                        <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-close"></use>
+                                    </svg>
+                                </a>
+                            </figure>
+                        </article>
+                        <div class="card-body">
+                            <p class="prod-brand">
+                                {{#if brand.name}}<a href="{{brand.url}}">{{ brand.name }}</a>{{/if}}
+                            </p>
+                            <h4 class="card-title">
+                                <a href="{{url}}">{{ name }}</a>
+                            </h4>
+                        </div>
+                        <div class="prod-price" data-test-info-type="price">
+                            {{#or ../customer (if ../theme_settings.restrict_to_login '!==' true)}}
+                                {{> components/products/price price=price}}
+                            {{else}}
+                                {{> components/common/login-for-pricing}}
+                            {{/or}}
+                        </div>
+                        {{#or ../customer (if ../theme_settings.restrict_to_login '!==' true)}}
+                            {{#if show_cart_action}}
+                                {{#if has_options}}
+                                    <a href="{{url}}" {{#if settings.data_tag_enabled}} data-event-type="product-click" {{/if}} class="btn btnATC btn-oranges" data-product-id="{{id}}">{{lang 'products.choose_options'}}</a>
+                                {{/if}}
+                                {{#if pre_order}}
+                                    <a href="{{url}}" {{#if settings.data_tag_enabled}} data-event-type="product-click" {{/if}} class="btn btnATC btn-oranges" data-product-id="{{id}}">
+                                        {{lang 'products.pre_order'}}
+                                    </a>
+                                {{/if}}
+                                {{#if add_to_cart_url}}
+                                    <a href="{{add_to_cart_url}}" {{#if settings.data_tag_enabled}} data-event-type="product-click" {{/if}}  class="btn btnATC btn-oranges" data-product-id="{{id}}">
+                                        {{lang 'products.add_to_cart'}}
+                                    </a>
+                                {{/if}}
+                                {{#if out_of_stock_message}}
+                                    <a href="{{url}}" class="btn btn-out-of-stock btnATC" data-product-id="{{id}}">{{out_of_stock_message}}</a>
+                                {{/if}}
+                            {{/if}}
+                        {{/or}}
+                        {{#if summary}}
+                        <div class="prod-summary">
+                            <p>{{summary}}</p>
+                        </div>
+                        {{/if}}
+                        <div class="star-rating" data-test-info-type="productRating">
+                            <div class="rating--small">
+                                {{#if rating}}
+                                    {{> components/products/ratings rating=rating}}
+                                {{else}}
+                                        No Reviews
+                                {{/if}}
+                            </div>
+                        </div>
+                        {{#if availability}}
+                            <div class="availability"><label>Availability: </label>{{ availability }}</div>
+                        {{else}}
+                            <div class="availability"><label>Availability: </label>{{lang 'common.not_applicable'}}</div>
+                        {{/if}}
+                        {{#if custom_fields}}
+                            <ul>
+                                {{#each custom_fields}}
+                                    <li><label>{{name}}:</label> {{{value}}}</li>
+                                {{/each}}
+                            </ul>
+                        {{else}}
+                            <div class="custom_fields">{{lang 'common.not_applicable'}}</div>
+                        {{/if}}
+                    </li>
+                    {{/each}}
+                </ul>
+            </div>
+        </div>
+    </main>
+</div>
+</div>
+{{/partial}}
+{{> layout/base}}

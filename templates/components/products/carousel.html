@@ -1,0 +1,61 @@
+<section class="productCarousel owl-carousel"
+    data-owl='{
+        "nav": true,
+        "dots": true,
+        "items": {{columns}},
+        "slideBy": {{columns}},
+        "margin": 30,
+        "responsive": {
+         "0": {
+            "items": 1,
+            "slideBy": 1
+         },
+         "480": {
+            "items": 2,
+            "slideBy": 2
+         },
+         "599": {
+            "items": 2,
+            "slideBy": 2
+         },
+         "601": {
+            "items": 3,
+            "slideBy": 3
+         },
+         "767": {
+            "items": 3,
+            "slideBy": 3
+         },
+         "992": {
+            "items": 4,
+            "slideBy": 4
+         },
+         "1040": {
+            "items": 5,
+            "slideBy": 5
+         },
+         "1199": {
+            "items": 5,
+            "slideBy": 5
+         },
+         "1400": {
+            "items": {{columns}},
+            "slideBy": {{columns}}
+         },
+         "1600": {
+            "items": {{columns}},
+            "slideBy": {{columns}}
+         },
+         "2020": {
+            "items": {{columns}},
+            "slideBy": {{columns}}
+         }
+      },
+      "responsiveRefreshRate": 0
+    }'>
+    {{#each products}}
+    <div class="prod-item">
+        {{> components/products/card theme_settings=../theme_settings customer=../customer}}
+    </div>
+    {{/each}}
+</section>

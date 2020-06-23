@@ -1,0 +1,52 @@
+<div id="siderefineFilters" class="sidebarBlock accordion-block sidebarEffects-window">
+   <div
+        class="accordion-navigation toggleLink"
+        role="button"
+        data-collapsible="#facetedSearch-content--refineFilters">
+        <h5 class="accordion-title side-module-heading"><span>{{lang 'search.faceted.selected.title'}}</span></h5>
+
+        <div class="accordion-navigation-actions">
+            {{#if selected}}
+                <a href="{{ remove_url }}" class="facetedSearch-clearLink" data-faceted-search-facet>{{lang 'search.faceted.clear'}}</a>
+            {{/if}}
+            <i class="fa fa-chevron-up accordion-indicator toggleLink-text toggleLink-text--off">
+            </i>
+            <i class="fa fa-chevron-down accordion-indicator toggleLink-text toggleLink-text--on">
+            </i>
+        </div>
+    </div>
+    <div id="facetedSearch-content--refineFilters" class="accordion-content">
+        {{#if this.items}}
+            <ul class="inlineList inlineList--labels">
+                {{#each this.items}}
+                    <li>
+                        <a
+                            href="{{ url }}"
+                            class="facetLabel"
+                            rel="nofollow"
+                            data-faceted-search-facet>
+                            {{#if facet '===' 'rating'}}
+                                {{lang 'search.faceted.selected.rating-label' rating=title}}
+                            {{else}}
+                                {{ title }}
+                            {{/if}}
+
+                            <svg class="icon">
+                                <use xlink:href="#icon-close" />
+                            </svg>
+                        </a>
+                    </li>
+                {{/each}}
+            </ul>
+        {{else}}
+            <div class="alert alert-warning text-center">{{lang 'search.faceted.selected.no-filters'}}</div>
+        {{/if}}
+
+        {{#if remove_all_url}}
+            <a class="btn btn-alt btn-block" href="{{ remove_all_url }}" data-faceted-search-facet>
+                {{lang 'search.faceted.selected.clear-all'}}
+            </a>
+        {{/if}}
+    </div>
+</div>
+

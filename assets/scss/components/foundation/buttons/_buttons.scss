@@ -1,0 +1,245 @@
+// =============================================================================
+// BUTTONS (CSS)
+// =============================================================================
+
+/*Buttons*/
+
+.btn {
+    font-family: stencilFontFamily('button--font'), Arial, Helvetica, sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    height: 40px;
+    line-height: initial;
+    padding: 0 44px;
+    letter-spacing: 0;
+    text-transform: uppercase;
+    border-radius: 3px;
+    background: #fff;
+    display: -webkit-inline-box;
+    display: -moz-inline-box;
+    display: -ms-inline-flexbox;
+    display: inline-flex;
+    -webkit-align-items: center;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+    -moz-box-shadow: 0 1px 5px rgba(0,0,0,.2);
+    -webkit-box-shadow: 0 1px 5px rgba(0,0,0,.2);
+    box-shadow: 0 1px 5px rgba(0,0,0,.2);
+
+}
+.btn-banner {
+    background: transparent;
+    border: 1px solid stencilColor("btn-banner-text-color");
+    padding: 10px 20px;
+    color: stencilColor("btn-banner-text-color");
+    font-weight: 700;
+    -o-border-radius: 4px;
+    -ms-border-radius: 4px;
+    -moz-border-radius: 4px;
+    -webkit-border-radius: 4px;
+    border-radius: 4px;
+    display: inline-block;
+    &:hover {
+        background: stencilColor('btn-banner-text-background-hover');
+        color: stencilColor("btn-banner-text-color-hover");
+    }
+    & i {
+         color: stencilColor('module-heading-button-background');
+         margin-left: 5px;
+    }
+}
+
+.btn-module-heading {
+    margin-bottom: 25px;
+    background: stencilColor('module-heading-button-background');
+    color: stencilColor('module-heading-button-color');
+    box-shadow: 0px 3px 0px rgba(0, 0, 0, 0.5);
+    min-width: 225px;
+    & svg {
+        margin-left: 5px;
+        width: 13px;
+        height: 11px;
+        fill: stencilColor('module-heading-button-color');
+    }
+    &:hover {
+        background: stencilColor('module-heading-button-background-hover');
+        color: stencilColor('module-heading-button-color-hover');
+        & svg {
+            fill: stencilColor('module-heading-button-color-hover');
+        }
+    }
+}
+
+.compareTable-action .btn{
+    padding: 6px 10px;
+    white-space: normal;
+    line-height: 1.5;
+    height: auto;
+    width: 100%;
+}
+.btn.btn-sm {
+    font-size: 11px;
+    line-height: 25px;
+    height: 28px;
+    padding: 0 15px;
+    border-width: 1px !important;
+}
+.btn.btn-md{
+    height: 36px;
+}
+.btn.btn-lg {
+    line-height: 39px;
+    height: 42px;
+    letter-spacing: 0;
+    padding: 0 35px;
+}
+
+.btn.btn-oranges {
+    color: stencilColor('button--oranges-color');
+    border: 2px solid stencilColor('button--oranges-backgroundColor');
+    background: stencilColor('button--oranges-backgroundColor');
+}
+
+.btn.btn-oranges:hover {
+    color: stencilColor('button--oranges-colorHover');
+    border: 2px solid stencilColor('button--oranges-backgroundColorHover');
+    background: stencilColor('button--oranges-backgroundColorHover');
+}
+/* btn-out-of-stock*/ 
+.btn.btn-out-of-stock {
+    color: stencilColor('button--outOfStock-color');
+    border: 2px solid stencilColor('button--outOfStock-backgroundColor');
+    background: stencilColor('button--outOfStock-backgroundColor');
+}
+
+.btn.btn-out-of-stock:hover {
+    color: stencilColor('button--outOfStock-colorHover');
+    border: 2px solid stencilColor('button--outOfStock-backgroundColorHover');
+    background: stencilColor('button--outOfStock-backgroundColorHover');
+}
+
+/*btn-primary*/
+
+.btn.btn-primary {
+    color: stencilColor('button--primary-color');
+    border: 2px solid stencilColor('button--primary-backgroundColor');
+    background: stencilColor('button--primary-backgroundColor');
+}
+
+.btn.btn-primary:hover {
+    color: stencilColor('button--primary-colorHover');
+    background: stencilColor('button--primary-backgroundColorHover');
+    border: 2px solid stencilColor('button--primary-backgroundColorHover');
+}
+
+.btn.btn-primary[disabled],
+.btn.btn-primary[disabled]:hover,
+.btn.btn-primary[disabled]:focus,
+.btn.btn-primary[disabled]:active {
+    color: stencilColor('button--primary-color');
+    border: 2px solid stencilColor('button--primary-backgroundColor');
+    background: stencilColor('button--primary-backgroundColor');
+}
+
+.btn-sm.btn-primary {
+    line-height: 24px;
+}
+
+.btn > i.fa.fa-caret-right {
+    font-size: 16px;
+    position: relative;
+    top: 1px;
+    margin-left: 9px;
+}
+
+/*btn alternate*/
+.btn.btn-alt {
+    color: stencilColor('button--alt-color');
+    border: 2px solid stencilColor('button--alt-borderColor');
+    background: stencilColor('button--alt-bgColor');
+}
+
+.btn.btn-alt:hover {
+    color: stencilColor('button--alt-colorHover');
+    background: stencilColor('button--alt-bgColorHover');
+    border: 2px solid stencilColor('button--alt-borderColorHover');
+}
+
+.btn.btn-alt-white {
+    color: #fff;
+    border: 2px solid #fff;
+    background: #000;
+}
+
+.btn.btn-alt-white:hover {
+    color: #000;
+    background: #fff;
+}
+.btn.btn-alt[disabled],
+.btn.btn-alt[disabled]:hover,
+.btn.btn-alt[disabled]:focus,
+.btn.btn-alt[disabled]:active {
+    color: stencilColor('button--alt-color');
+    border: 2px solid stencilColor('button--alt-borderColor');
+    background: stencilColor('button--alt-bgColor');
+}
+
+
+/*btn-default*/
+
+.btn.btn-default {
+    border-color: #cbcbcb;
+}
+
+.btn.btn-default:hover {
+    background: #f5f5f5;
+}
+
+
+/*btn-checkout*/
+
+.btn.btn-checkout {
+    max-width: 270px;
+    padding: 0 25px;
+     height: 52px;
+    color: stencilColor('button--checkout-color');
+    border-color: stencilColor('button--checkout-bgColor');
+    background:stencilColor('button--checkout-bgColor');
+}
+
+.btn.btn-checkout:hover {
+    border-color: stencilColor('button--checkout-bgColorHover');
+    background: stencilColor('button--checkout-bgColorHover');
+}
+
+/*btn disabled*/
+.btn.disabled, .btn[disabled], fieldset[disabled] .btn {
+    opacity: .5;
+    filter: alpha(opacity=50);
+}
+
+.button {
+    line-height: 1rem;
+    transition: all 0.15s ease;
+
+    + .button {
+        margin-left: 0;
+
+        @include breakpoint("medium") {
+            margin-left: spacing("half");
+        }
+    }
+}
+
+.button[disabled] {
+    cursor: not-allowed;
+}
+
+.button--icon {
+
+    svg {
+        fill: stencilColor("button--icon-svg-color");
+    }
+}
+

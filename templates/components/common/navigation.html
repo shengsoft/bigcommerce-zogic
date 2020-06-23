@@ -1,0 +1,66 @@
+<nav class="navUser">
+    <ul>
+        {{#if customer}}
+        <li id="accountDropdown" class="hidden-xs hidden-sm">
+            <a class="navUser-action has-dropdown" href="#" data-dropdown="accountSelection" aria-controls="accountSelection" aria-expanded="false"><span>{{lang 'common.my_account'}}</span><i class="fa fa-angle-down"></i></a>
+            <ul class="dropdown-menu" id="accountSelection" data-dropdown-content aria-hidden="true" tabindex="-1">
+                <div class="triangle-with-shadow"></div>
+                {{#if settings.account_creation_enabled}}
+                <li class="login-register">
+                    {{#if customer}}
+                        <div class="logged-in">{{lang 'Welcome back,'}} <strong>{{customer.name}}. </strong></div>
+                    {{/if}}
+                </li>
+                {{/if}}
+                <li><a href="{{urls.account.orders.all}}">{{lang 'account.nav.orders'}}</a></li>
+                {{#if settings.returns_enabled}}
+                <li><a href="{{urls.account.returns}}">{{lang 'account.nav.returns'}}</a></li>
+                {{/if}}
+                <li><a href="{{urls.account.inbox}}">{{lang 'account.mobile_nav.messages'}}</a></li>
+                <li><a href="{{urls.account.addresses}}">{{lang 'account.nav.addresses'}}</a></li>
+                <!-- <li><a href="{{urls.account.wishlists.all}}">{{lang 'account.mobile_nav.wishlists'}}</a></li> -->
+                <li><a href="{{urls.account.recent_items}}">{{lang 'account.nav.recently_viewed'}}</a></li>
+                <li><a href="{{urls.account.details}}">{{lang 'account.nav.settings'}}</a></li>
+                <li><a href="{{urls.auth.logout}}">{{lang 'common.logout'}}</a></li>
+            </ul>
+        </li>
+        
+        {{else}}
+            {{#if settings.account_creation_enabled}}
+                {{#if customer}}
+                    <li class="logged-in hidden-sm hidden-xs ">{{lang 'Welcome back,'}} <strong>{{customer.name}}. </strong><a href="{{urls.auth.logout}}"><span>{{lang 'common.logout'}}</span></a></li>
+                {{else}}
+                    <li class="hidden-sm hidden-xs hover-sub">
+                        <a class="navUser-action" aria-controls="accountSelection" aria-expanded="false"  href="/login.php"><svg style="width: 16px; height: 18px;"><use xlink:href="#icon-account"></use></svg> <span>{{lang 'common.login'}}</span><i class="fa fa-angle-down sub-i"></i></a>
+                        <ul class="dropdown-menu dropdown-menu1" id="accountSelection" data-dropdown-content aria-hidden="true" tabindex="-1">
+                            <div class="triangle-with-shadow"></div>
+                            {{#if settings.account_creation_enabled}}
+                            <li class="login-register">
+                                {{#if customer}}
+                                    <div class="logged-in">{{lang 'Welcome back,'}} <strong>{{customer.name}}. </strong></div>
+                                {{/if}}
+                            </li>
+                            {{/if}}
+                            <li><a href="{{urls.account.orders.all}}">{{lang 'account.nav.orders'}}</a></li>
+                            {{#if settings.returns_enabled}}
+                            <li><a href="{{urls.account.returns}}">{{lang 'account.nav.returns'}}</a></li>
+                            {{/if}}
+                            <li><a href="{{urls.account.inbox}}">{{lang 'account.mobile_nav.messages'}}</a></li>
+                            <li><a href="{{urls.account.addresses}}">{{lang 'account.nav.addresses'}}</a></li>
+                            <!-- <li><a href="{{urls.account.wishlists.all}}">{{lang 'account.mobile_nav.wishlists'}}</a></li> -->
+                            <li><a href="{{urls.account.recent_items}}">{{lang 'account.nav.recently_viewed'}}</a></li>
+                            <!-- <li><a href="{{urls.account.details}}">{{lang 'account.nav.settings'}}</a></li> -->
+                        </ul>
+                        <!-- {{> components/halothemes/halo-dropdown-login}} -->
+                    </li>
+                  <!--   <li class="hidden-sm hidden-xs "><a href="{{urls.auth.create_account}}"><svg style="width: 16px; height: 18px;"><use xlink:href="#thin-plus-icon"></use></svg> <span>{{lang 'common.sign_up'}}</span></a></li> -->
+                {{/if}}
+            {{/if}}
+
+        {{/if}}
+        <li class="hidden-xs hidden-sm"><a href="/contact-us/"><svg style="width: 16px; height: 18px;"><use xlink:href="#icon-contact-us"></use></svg> <span>Contact</span></a></li>
+
+
+
+    </ul>
+</nav>

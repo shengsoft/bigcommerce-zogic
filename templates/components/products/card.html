@@ -1,0 +1,131 @@
+<article class="card {{#if alternate}}card--alternate{{/if}}"  {{#if settings.data_tag_enabled}} data-event-type="{{event}}" data-entity-id="{{id}}" data-position="{{position}}" data-name="{{name}}" data-product-category="{{#each category}}{{#if @last}}{{this}}{{else}}{{this}}, {{/if}}{{/each}}" data-product-brand="{{brand.name}}" data-product-price="{{#if price.with_tax}}{{price.with_tax.value}}{{else}}{{price.without_tax.value}}{{/if}}"  {{/if}}>
+        <figure class="card-figure">
+        <div class="prod-image {{#if theme_settings.halothemes_images_swap}}{{#if images.length '>=' 2}}has-img-swap{{/if}}{{/if}}">
+            <a href="{{url}}"  {{#if settings.data_tag_enabled}} data-event-type="product-click" {{/if}}>
+                <img class="card-image" src="{{getImage image 'productgallery_size' (cdn theme_settings.default_image_product)}}" alt="{{image.alt}}" title="{{image.alt}}">
+
+               {{#if theme_settings.halothemes_images_swap}}
+               {{#if images.length '>=' 2}}
+               {{#each images}}
+                  {{#if @index '==' 1}}
+                  <img class="card-image img-swap" src="{{getImage this 'productgallery_size' (cdn theme_settings.default_image_product)}}" alt="{{this.alt}}">
+                  {{/if}}
+               {{/each}}
+               {{/if}}
+               {{/if}}
+
+            </a>
+            <div class="actions">
+                <span class="warp-actions">
+                    {{#unless hide_product_quick_view}}
+                        {{#if theme_settings.show_product_quick_view}}
+
+                            {{#if settings.data_tag_enabled}}
+                                <a href="#" class="btnQV quickview btn btn-oranges btnATC" data-event-type="product-click" data-product-id="{{id}}">Quick View</a>
+                            {{else}}
+                                <a href="#" class="btnQV quickview btn btn-oranges btnATC" data-product-id="{{id}}">Quick View</a>
+                            {{/if}}
+                        {{/if}}
+                    {{/unless}}
+                    <!-- <a href="/wishlist.php?action=add&product_id={{id}}" class="btnWL" title="{{lang 'account.wishlists.add_item'}}"><i class="fa fa-heart"></i></a> -->
+                </span>
+            </div>
+            <div class="badges-container">
+                {{#or price.non_sale_price_with_tax price.non_sale_price_without_tax}}
+                    <div class="sale-badge">{{lang 'halothemes.sale_badge'}}</div>
+                {{/or}}
+
+                {{#if stock_level '==' 0}}
+                    <div class="product-out-of-stock">
+                        <div class="sale-stock-badge">Out of Stock</div>
+                    </div>
+                {{/if}}
+                {{#if out_of_stock_message }}
+                    <div class="soldOut-badge">{{lang 'products.sold_out'}}</div>
+                {{/if}}
+            </div>
+        </div>
+        <figcaption class="prod-desc" {{#or customer (if theme_settings.restrict_to_login '!==' true)}}{{else}}login-for-pricing{{/or}}>
+
+            {{#if theme_settings.show_product_brand}}
+
+                    <p class="prod-brand" data-test-info-type="brandName">{{#if brand.name}}{{brand.name}} {{/if}}</p>
+
+            {{/if}}
+
+            <h4 class="prod-name">
+                <a href="{{url}}" data-product-id="{{id}}"  {{#if settings.data_tag_enabled}} data-event-type="product-click" {{/if}}>{{name}}</a>
+            </h4>
+
+<!--YOTPO CATEGORY STAR-->
+<div class="yotpo bottomLine"
+data-product-id="{{id}}">
+</div>
+
+<script>
+    function yotpotWait() {
+        if (typeof Yotpo == "undefined") {
+            setTimeout(yotpotWait, 500);
+        } else {
+            var api = new Yotpo.API(yotpo);
+            api.refreshWidgets();
+        }
+    }
+    yotpotWait();
+</script>
+
+            <div class="action-compare">
+                <div class="star-rating" data-test-info-type="productRating">
+                    <div class="rating--small">
+                        {{> components/products/ratings rating=rating}}
+                    </div>
+                </div>
+
+            </div>
+
+            {{#if summary}}
+            <div class="prod-summary">
+                <p>{{{summary}}}</p>
+            </div>
+            {{/if}}
+
+             <div class="prod-price" data-test-info-type="price">
+                {{#or customer (if theme_settings.restrict_to_login '!==' true)}}
+                    {{> components/products/price price=price customer=customer}}
+                {{else}}
+                    {{> components/common/login-for-pricing}}
+                {{/or}}
+            </div>
+
+            {{#or customer (if theme_settings.restrict_to_login '!==' true)}}
+                {{#if show_cart_action}}
+                    <div class="btnAbs">
+                    {{#if has_options}}
+                        <a href="{{url}}" data-event-type="product-click" class="btn btn-oranges btnATC" data-product-id="{{id}}"><i class="icon-cart"><svg><use xlink:href="#shopping-bag-add"></use></svg></i>{{lang 'products.choose_options'}}</a>
+                    {{/if}}
+                    {{#if pre_order}}
+                        <a href="{{url}}" data-event-type="product-click" class="btn btn-oranges btnATC" data-product-id="{{id}}"><i class="icon-cart"><svg><use xlink:href="#shopping-bag-add"></use></svg></i>{{lang 'products.pre_order'}}</a>
+                    {{/if}}
+                    {{#if add_to_cart_url }}
+
+                        <a href="{{add_to_cart_url}}" data-event-type="product-click" class="btn btn-oranges btnATC" data-product-id="{{id}}"><i class="icon-cart"><svg><use xlink:href="#shopping-bag-add"></use></svg></i>{{lang 'products.add_to_cart'}}</a>
+                    {{/if}}
+                    {{#if out_of_stock_message }}
+                        <a href="{{url}}" data-event-type="product-click" class="btn btn-out-of-stock btnATC" data-product-id="{{id}}"><i class="icon-cart"><svg><use xlink:href="#shopping-bag-add"></use></svg></i>{{out_of_stock_message}}</a>
+                    {{/if}}
+                    </div>
+                {{/if}}
+                   <a href="/wishlist.php?action=add&product_id={{id}}" class="btnWL WLproductList"><i class="fa fa-heart"></i> <span>{{lang 'account.wishlists.add_item'}}</span></a>
+                {{#if show_compare}}
+                    <div class="btn-compare">
+                        <input type="checkbox" class="form-checkbox" name="products[]" value="{{id}}" id="compare-{{id}}" data-compare-id="{{id}}">
+                        <label class="form-label" for="compare-{{id}}">
+                            <span>{{lang 'products.compare'}}</span>
+                        </label>
+                    </div>
+                {{/if}}
+            {{/or}}
+
+        </figcaption>
+    </figure>
+</article>

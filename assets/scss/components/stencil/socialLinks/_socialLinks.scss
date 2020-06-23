@@ -1,0 +1,41 @@
+// =============================================================================
+// SOCIAL LINKS (CSS)
+// =============================================================================
+.social-icons {
+    margin: 0;
+    margin-top: 2px;
+    padding: 30px 0px;
+}
+
+.social-icons li {
+    list-style: none;
+    display: inline-block;
+    padding: 2px 14px;
+    @media (max-width: 380px) {
+        padding: 2px 10px;
+    }
+}
+
+.social-icons a {
+    text-align: center;
+    width: auto;
+    height: 31px;
+    & svg {
+        width: 28px;
+        height: 31px;
+        fill: stencilColor('footer-social-icon-color');
+    }
+    &:hover svg {
+        fill: stencilColor('footer-social-icon-color-hover');
+    }
+    &.icon--facebook {
+        width: 25px;
+    }
+}
+
+.black-icons .social-icons a {
+    background-color: #323232;
+    & svg {
+        fill: #fff;
+    }
+}

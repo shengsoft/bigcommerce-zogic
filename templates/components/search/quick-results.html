@@ -1,0 +1,15 @@
+{{#if product_results.products}}
+<ul class="productItems" {{#if settings.data_tag_enabled}} data-list-name="Quick Search Results" {{/if}}>
+   {{#each product_results.products}}
+   <li class="product">
+      {{> components/products/quick-search-products alternate=true show_compare=../show_compare theme_settings=../theme_settings}}
+   </li>
+   {{/each}}
+</ul>
+{{else}}
+<div class="alert alert-warning">
+   <p class="quickSearchMessage">
+      {{lang 'search.results.quick_count' count=pagination.product_results.total search_query=forms.search.query}}
+   </p>
+</div>
+{{/if}}

@@ -1,0 +1,68 @@
+---
+brands:
+    limit: 1000
+---
+
+{{#partial "page"}}
+{{> components/common/breadcrumbs breadcrumbs=breadcrumbs}}
+<div class="brand-head-wrap">
+    <div class="container">
+        <h1 class="page-heading">{{lang 'brand.label'}}</h1>
+        <div class="brand-description">Thanks for visiting Zogics! We’re proud to be your go-to source for top-quality wholesale gym equipment, facility maintenance products, and all types of fitness gear and equipment. We carry a wide range of carefully selected products from the fitness industry’s leading brands, including our own in-house line of quality supplies. From gym wipes and towels to personal care and safety products, we have everything you need to keep your business at peak performance.</a></div>
+    </div>
+</div>
+<div class="container">
+
+<main class="page">
+
+    
+    {{#if theme_settings.brandspage_layout '===' 'aztable'}}
+        <ul id="azBrandsTable" class="azBrands-table"></ul>
+        <div id="azBrands" class="azBrands"></div>
+    {{/if}}
+
+    <ul class="brandGrid {{#if theme_settings.brandspage_layout '===' 'aztable'}}hide{{/if}}" data-brands-list data-brands-list-next="{{pagination.brands.next}}" data-azbrands="azBrands">
+        {{#each brands}}
+            <li class="brand" data-brand-code="{{dashcase name}}">
+                <article class="card {{#if alternate}}card--alternate{{/if}}">
+                    <figure class="card-figure">
+                        <a href="{{url}}">
+                            <img class="card-image" src="{{getImage image 'brand_size' (cdn ../theme_settings.default_image_brand)}}" alt="{{name}}" title="{{name}}">
+                        </a>
+                    </figure>
+                    <div class="card-body">
+                        <h4 class="card-title">
+                            <a href="{{url}}">{{name}}</a>
+                        </h4>
+                    </div>
+                </article>
+            </li>
+        {{/each}}
+    </ul>
+    {{> components/common/paginator pagination.brands}}
+</main>
+</div>
+
+<div class="brand-head-wrap">
+    <div class="container">
+        <div class="brand-description"><strong>Innovative Products from Reputable Brands</strong><br>
+<p>We’re confident you’re going to find exactly what you need, as well as some products that you might not have even known about. Brands like York Barbell, Kimberly-Clark, First Aid Only, Simplehuman, and GOJO are well-known and respected, and we bring you the best prices on the wholesale gym equipment you need.</p><br>
+
+<strong>Keep Your Facility Sparkly Clean</strong><br>
+<p>In order to create a welcoming and enjoyable environment for your guests, it’s important that you keep your facility clean and inviting. From body washes, shower gels, and conditioners to gym wipes, paper towels, and facial tissues, we have it all from leading brands like Clorox, Febreeze, Arm & Hammer, Air Wick, Rubbermaid, and more.</p><br>
+
+<strong>Gym Equipment Brands At Affordable Prices</strong><br>
+<p>Most people who go to the gym even casually can recognize the difference in quality when it comes to fitness products. Using top-of-the-line wholesale gym equipment shows the people who frequent your facility strives for the best. Gym equipment brands like Stroops, Pro Team, Troy Barbell, and Power Systems are known for producing dependable products.</p><br>
+
+<strong>Remarkable Values</strong><br>
+<p>While we sell from leading brands, we also have our own line of great products. Our antibacterial gym wipes, sanitizing wipes, value wipes, and wellness center wipes are some of our top-selling products, and for good reason. When it comes to your facility’s hygiene, nothing but the best will do.<br>
+
+Besides selling the best gym wipes in the industry, we also offer a variety of gym supplies from lotions, soaps, shampoos, and conditioners to stability balls, earbuds, and water bottles.</p><br>
+
+<strong>Get In Touch Today</strong><br>
+<p>If you have any questions about our products or anything else at all, please don’t hesitate to contact our team. Give us a call at 888.623.0088 or connect with us via email at <a href="mailto:hello@zogics.com">hello@zogics.com</a>. Using quality wholesale gym equipment makes your guests want to return again and again, and we make sure you can afford to keep your facility stocked with the best supplies. Get the best value on the fitness gear you need today.</p></div>
+    </div>
+</div>
+
+{{/partial}}
+{{> layout/base}}

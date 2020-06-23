@@ -1,0 +1,100 @@
+// =============================================================================
+// MODAL (CSS)
+// =============================================================================
+
+
+.modal {
+    // scss-lint:disable ImportantRule
+    left: 50%;
+    margin: 0 auto;
+    max-height: 90%;
+    max-width: 95%;
+    min-height: 240px;
+    outline: none;
+    overflow: visible;
+    padding: 0;
+    right: 0;
+    top: 50% !important;
+    transform: translate(-50%, -50%);
+    background-color: #ffffff;
+    -moz-border-radius: 4px;
+    -webkit-border-radius: 4px;
+    border-radius: 4px;
+}
+
+.modal--large {
+    @include breakpoint("large") {
+        width: $modal-width--large;
+    }
+}
+
+.modal-header {
+    padding: 1.2rem 0;
+    padding-left: $reveal-modal-paddingHorizontal;
+    padding-right: remCalc($reveal-close-height) + $reveal-close-side;
+}
+
+.modal-header-title {
+    font-size: 14px;
+    letter-spacing: 0;
+    font-family: stencilFontFamily('body-secondary-font'), Arial, Helvetica, sans-serif;
+    font-weight: 400;
+    color: #969696;
+    line-height: 18px;
+
+}
+
+.modal-close {
+    @include square($reveal-close-height);
+    color: stencilColor("button--modal-close-color");
+    width: 30px;
+    height: 30px;
+    position: absolute;
+    right: -15px;
+    top: -15px;
+    font-size: 25px;
+    padding: 0 0 1px;
+    border-radius: 50%;
+    color: white;
+    text-align: center;
+    text-decoration: none !important;
+    z-index: zIndex("high");
+    background: stencilColor("button--modal-close-bgColor");
+    display: -webkit-box;
+    /* OLD - iOS 6-, Safari 3.1-6 */
+    display: -moz-box;
+    /* OLD - Firefox 19- (buggy but mostly works) */
+    display: -ms-flexbox;
+    /* TWEENER - IE 10 */
+    display: -webkit-flex;
+    /* NEW - Chrome */
+    display: flex;
+    /* NEW, Spec - Opera 12.1, Firefox 20+ */
+    justify-content: center;
+    align-items: center;
+    &:hover {
+        color: stencilColor("button--modal-close-colorHover");
+         text-decoration: none;
+         background: stencilColor("button--modal-close-bgColorHover");
+    }
+}
+
+.modal-body {
+    overflow: auto;
+    -webkit-overflow-scrolling: touch;
+    padding: $reveal-modal-padding;
+    &.quickView{        
+        .productView{
+            padding: 0;
+        }
+        .productViewTop{
+            box-shadow: none;
+            border-radius: 0;
+            padding: 0;
+        }
+        #customCMS-detail{
+            display: none;
+        }
+    }
+}
+

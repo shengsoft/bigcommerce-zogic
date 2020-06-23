@@ -1,0 +1,26 @@
+<ul class="footer-payment-icons wow fadeInUp animated" data-wow-delay="200ms" >
+    {{#if theme_settings.show_accept_visa}}
+    <li class="PaymentVisa"><a href="#" title="Visa"><svg width="58" height="40"><use xlink:href="#icon-logo-visa"></use></svg></a></li>
+    {{/if}}
+    {{#if theme_settings.show_accept_visa_electron}}
+    <li class="PaymentVisaElectron"><a href="#" title="Visa Electron"><svg width="50" height="40"><use xlink:href="#icon-logo-visa-electron"></use></svg></a></li>
+    {{/if}}
+    {{#if theme_settings.show_accept_mastercard}}
+    <li class="PaymentMasterCard"><a href="#" title="Master Card"><svg width="60" height="40"><use xlink:href="#icon-logo-mastercard"></use></svg></a></li>
+    {{/if}}
+    {{#if theme_settings.show_accept_maestro}}                      
+    <li class="PaymentMaestro"><a href="#" title="Maestro"><svg width="60" height="40"><use xlink:href="#icon-logo-maestro"></use></svg></a></li>  
+    {{/if}}     
+    {{#if theme_settings.show_accept_amex}}                
+    <li class="PaymentAmericanExpress"><a href="#" title="American Express"><svg width="60" height="40"><use xlink:href="#icon-logo-american-express"></use></svg></a></li>
+    {{/if}}
+    {{#if theme_settings.show_accept_solo}}
+    <li class="PaymentSolo"><a href="#" title="Solo"><svg width="60" height="40"><use xlink:href="#icon-logo-solo"></use></svg></a></li>
+    {{/if}}
+    {{#if theme_settings.show_accept_discover}}
+    <li class="PaymentDiscover"><a href="#" title="Discover"><svg width="58" height="40"><use xlink:href="#icon-logo-discover"></use></svg></a></li>
+    {{/if}}  
+    {{#if theme_settings.show_accept_paypal}}
+    <li class="PaymentPaypal"><a href="#" title="Paypal"><svg width="50" height="40"><use xlink:href="#icon-logo-paypal"></use></svg></a></li> 
+    {{/if}}                                
+</ul>

@@ -1,0 +1,6 @@
+<div id="homeFeaturedProducts" class="module-wrapper wow fadeInUp animated">
+  	<div class="container" {{#if settings.data_tag_enabled}} data-list-name="Featured Products" {{/if}}>
+      <h2 class="module-heading"><span>{{lang 'products.featured' }}</span></h2>
+      {{> components/products/featured-carousel products=products}}
+   	</div>
+</div>

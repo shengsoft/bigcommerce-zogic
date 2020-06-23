@@ -1,0 +1,133 @@
+<!-- BEGIN ASK AN EXPERT MODAL -->
+<div id="halo-ask-an-expert-form" class="modal" data-reveal>
+   <a href="#" class="modal-close" aria-label="{{lang 'common.close'}}" role="button">
+      <span aria-hidden="true">&#215;</span>
+   </a>
+   <div class="modal-content">
+      <div class="modal-header">
+         <h2 class="modal-header-title">Ask An Expert</h2>
+      </div>
+      <div class="modal-body">
+         <div id="contact_results"></div>
+         <div class="form-inner">
+            
+            <div class="sub-title">We’ll follow up with you via email within 24-48 hours</div>
+            <div class="sub-title-question">Please answer the following Questionnaire</div>
+            <form class="form" id="contact_form">
+               <fieldset class="form-fieldset">
+                  <div class="form-field">
+                     <input required="true" type="text" class="form-input" name="user_name" placeholder="Your Name" value="{{customer.name}}">
+                  </div>
+                  <div class="form-field">
+                     <input required="true" type="text" class="form-input" name="email" placeholder="Email Address" value="{{customer.email}}">
+                  </div>
+                  <div class="form-field">
+                     <input required="true" type="text" class="form-input" name="phone" placeholder="Phone Number" value="{{customer.phone}}">
+                  </div>
+                  <div class="form-field">
+                     <label class="form-label">Do you need:</label>
+                     <input class="form-radio" id="pricing-radio" type="radio" name="type_package" checked value="Pricing">
+                     <label class="form-label" for="pricing-radio">Pricing</label>
+                     <input class="form-radio" id="answers-radio" type="radio" name="type_package" value="Answers">
+                     <label class="form-label" for="answers-radio">Answers</label>
+                     <input class="form-radio" id="both-radio" type="radio" name="type_package" value="Pricing & Answers">
+                     <label class="form-label" for="both-radio">Both</label>
+                  </div>
+                  <div class="form-field">
+                     <label class="form-label" for="comment-area">What can i help you with today ?</label>
+                     <textarea name="message" cols="30" rows="3" class="form-input" id="comment-area" required="true"></textarea>
+                  </div>
+                  <div class="form-field">
+                     <label class="form-label label-last">How would you like me to contact you ?</label>
+                     <input class="form-radio" id="phone-radio" type="radio" name="type_contact" checked value="Phone">
+                     <label class="form-label" for="phone-radio">Phone</label>
+                     <input class="form-radio" id="email-radio" type="radio" name="type_contact" value="Email">
+                     <label class="form-label" for="email-radio">Email</label>
+                     <input class="form-radio" id="both-radio-2" type="radio" name="type_contact" value="Phone & Email">
+                     <label class="form-label" for="both-radio-2">Both</label>
+                  </div>
+                  <button type="button" class="btn btn-checkout fasubmit btn-send-form">Send Question</button>
+               </fieldset>
+            </form>
+         </div>
+      </div>
+   </div>
+</div>
+<!-- END ASK AN EXPERT MODAL -->
+
+<script>
+$(document).ready(function() {
+
+   $(".btn-send-form").click(function() {
+
+      var proceed = true;
+      //simple validation at client's end
+      //loop through each field and we simply change border color to red for invalid fields
+      $("#contact_form input[required=true], #contact_form textarea[required=true]").each(function() {
+         if (!$.trim($(this).val())) { //if this field is empty
+            $(this).parent('.form-field').removeClass('form-field--success').addClass('form-field--error');
+            proceed = false; //set do not proceed flag
+         } else {
+            $(this).parent('.form-field').removeClass('form-field--error').addClass('form-field--success');
+         }
+         //check invalid email
+         var email_reg = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
+         if ($(this).attr("name") == "email" && !email_reg.test($.trim($(this).val()))) {
+            $(this).parent('.form-field').removeClass('form-field--success').addClass('form-field--error');
+            proceed = false; //set do not proceed flag
+         }
+      });
+
+      if (proceed) //everything looks good! proceed...
+      {
+
+         //get input field values data to be sent to server
+         post_data = {
+            'api': 'i_send_mail',
+            'subject': 'ASK AN EXPERT',
+            'from_name': 'HaloThemes',
+            'email': 'demo.halothemes@gmail.com',
+            'email_from': $('input[name=email]').val(),
+            'message': '<h2>ASK AN EXPERT</h2><table>\
+                  <tr><td><strong>Your Name</strong></td><td>' + $('input[name=user_name]').val() + '</td></tr>\
+                  <tr><td><strong>Email Address</strong></td><td>' + $('input[name=email]').val() + '</td></tr>\
+                  <tr><td><strong>Phone Number</strong></td><td>' + $('input[name=phone]').val() + '</td></tr>\
+                  <tr><td><strong>How would you like me to contact you ?</strong></td><td>' + $('input[name=type_contact]:checked').val() + '</td></tr>\
+                  <tr><td><strong>Do you need</strong></td><td>' + $('input[name=type_package]:checked').val() + '</td></tr>\
+                  <tr><td><strong>What can i help you with today ?</strong></td><td>' + $('textarea[name=message]').val() + '</td></tr>\
+               </table>'
+         };
+
+         //Ajax post data to server
+         $.post('https://themevale.net/tools/sendmail/ask-an-expert/', post_data, function(response) {
+            if (response.type == 'error') { //load json data from server and output message
+               output = '<div class="error">' + response.text + '</div>';
+            } else {
+               output = '<div class="alert alert-success">Thank you. We\'ve received your feedback and will respond shortly.</div>';
+               //reset values in all input fields
+               $("#contact_form  input[required=true], #contact_form textarea[required=true]").val('');
+               $(".form-inner").hide(); //hide form after success
+            }
+            $("#contact_results").hide().html(output).show();
+         }, 'json');
+      }
+   });
+
+   //reset previously set border colors and hide all message on .keyup()
+   $("#contact_form  input[required=true], #contact_form textarea[required=true]").keyup(function() {
+      if (!$.trim($(this).val())) { //if this field is empty
+         $(this).parent('.form-field').removeClass('form-field--success').addClass('form-field--error');
+         proceed = false; //set do not proceed flag
+      } else {
+         $(this).parent('.form-field').removeClass('form-field--error').addClass('form-field--success');
+      }
+      //check invalid email
+      var email_reg = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
+      if ($(this).attr("name") == "email" && !email_reg.test($.trim($(this).val()))) {
+         $(this).parent('.form-field').removeClass('form-field--success').addClass('form-field--error');
+         proceed = false; //set do not proceed flag
+      }
+      $("#contact_results").hide();
+   });
+});
+</script>
