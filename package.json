@@ -46,7 +46,7 @@
     "karma-webpack": "1.7.0",
     "lazysizes": "3.0.0",
     "load-grunt-config": "0.17.1",
-    "lodash": "^3.5.0",
+    "lodash": "^4.17.19",
     "magnific-popup": "^1.1.0",
     "malihu-custom-scrollbar-plugin": "^3.1.5",
     "nod-validate": "^2.0.12",
